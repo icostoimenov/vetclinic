@@ -9,6 +9,7 @@ import java.util.List;
 @Table(name = "users")
 public class UserEntity extends BaseEntity {
 
+    private String username;
     private String email;
     private String fullName;
     private String password;
@@ -71,6 +72,15 @@ public class UserEntity extends BaseEntity {
 
     public UserEntity setPhoneNumber(int phoneNumber) {
         this.phoneNumber = phoneNumber;
+        return this;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public UserEntity setUsername(String username) {
+        this.username = username;
         return this;
     }
 }
