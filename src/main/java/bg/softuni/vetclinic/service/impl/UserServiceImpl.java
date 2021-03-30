@@ -1,5 +1,6 @@
 package bg.softuni.vetclinic.service.impl;
 
+import bg.softuni.vetclinic.model.entities.DoctorEntity;
 import bg.softuni.vetclinic.model.entities.UserEntity;
 import bg.softuni.vetclinic.model.entities.UserRoleEntity;
 import bg.softuni.vetclinic.model.enums.UserRole;
@@ -29,16 +30,21 @@ public class UserServiceImpl implements UserService {
         if (userRepository.count() == 0) {
 
             UserRoleEntity adminRole = new UserRoleEntity().setRole(UserRole.ADMIN);
+            UserRoleEntity doctorRole = new UserRoleEntity().setRole(UserRole.DOCTOR);
             UserRoleEntity userRole = new UserRoleEntity().setRole(UserRole.USER);
 
-            userRoleRepository.saveAll(List.of(adminRole, userRole));
+            userRoleRepository.saveAll(List.of(adminRole, doctorRole, userRole));
 
             UserEntity admin = new UserEntity().setUsername("admin").setFullName("Admin Adminov").setEmail("admin@vet.bg").setPhoneNumber(555231345).setPassword(passwordEncoder.encode("123456"));
+            UserEntity doctor = new DoctorEntity().setSpecialization("psychologist").setUsername("doctor").setFullName("Dr Dolittle").setEmail("thedoc@vet.bg").setPhoneNumber(33325870).setPassword(passwordEncoder.encode("123456"));
             UserEntity user = new UserEntity().setUsername("user").setFullName("Dummy User").setEmail("user@dummy.bg").setPhoneNumber(555875492).setPassword(passwordEncoder.encode("123456"));
-            admin.setRoles(List.of(adminRole, userRole));
+
+
+            admin.setRoles(List.of(adminRole, doctorRole, userRole));
+            doctor.setRoles(List.of(doctorRole, userRole));
             user.setRoles(List.of(userRole));
 
-            userRepository.saveAll(List.of(admin, user));
+            userRepository.saveAll(List.of(admin, doctor, user));
         }
     }
 }
