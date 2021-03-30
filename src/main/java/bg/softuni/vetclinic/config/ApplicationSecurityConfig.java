@@ -13,11 +13,12 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 @EnableWebSecurity
 public class ApplicationSecurityConfig extends WebSecurityConfigurerAdapter {
 
-
+    //TODO authenticated access
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-       http.authorizeRequests().antMatchers("/css/**", "/js/**", "/img/**", "/forms/**", "/vendor/**").permitAll().antMatchers("/", "/home").permitAll();
+        http.authorizeRequests().antMatchers("/css/**", "/js/**", "/img/**", "/forms/**", "/vendor/**").permitAll()
+                .antMatchers("/", "/home").permitAll();
 
     }
 

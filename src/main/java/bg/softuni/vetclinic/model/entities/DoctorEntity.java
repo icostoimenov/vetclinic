@@ -3,12 +3,10 @@ package bg.softuni.vetclinic.model.entities;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.OneToMany;
-import javax.persistence.Table;
 import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-@Table(name = "doctors")
 public class DoctorEntity extends UserEntity {
 
     private String specialization;

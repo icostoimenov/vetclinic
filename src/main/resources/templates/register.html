@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head th:insert="fragments/commons :: head">
+
+</head>
+
+<body>
+<header id="header" class="fixed-top" th:replace="fragments/commons :: header"></header>
+
+<section style="margin-top: 50px">
+    <div id="login-box" style="width: 800px; height: 576px;">
+        <div class="left">
+            <h1>Sign up</h1>
+
+            <input type="text" name="username" placeholder="Username" />
+            <input type="text" name="email" placeholder="E-mail" />
+            <input type="password" name="password" placeholder="Password" />
+            <input type="password" name="password2" placeholder="Retype password" />
+
+            <input type="submit" name="signup_submit" value="Sign me up" />
+        </div>
+
+
+
+    </div>
+</section>
+
+<footer th:replace="fragments/commons :: footer"></footer>
+
+</body>
+
