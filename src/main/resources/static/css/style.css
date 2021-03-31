@@ -10107,21 +10107,21 @@ body {
   position: relative;
   top: 67px;
   margin: 5% auto;
-  width: 600px;
-  height: 400px;
+  width: 620px;
   background-color: rgba(0, 0, 0, 0.5);
   border-radius: 70px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
 }
 
 .left {
-  position: absolute;
   top: 0;
   left: 151px;
   box-sizing: border-box;
   padding: 40px;
-  width: 300px;
-  height: 400px;
+  width: 620px;
+  background-color: rgba(0, 0, 0, 0.5);
+  border-radius: 70px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
 }
 
 h1 {
@@ -10134,7 +10134,6 @@ input[type="text"],
 input[type="password"], input[type = "email"], input[type = "number"] {
   display: block;
   box-sizing: border-box;
-  margin-bottom: 20px;
   padding: 4px;
   width: 220px;
   height: 32px;
@@ -10155,8 +10154,8 @@ input[type="password"]:focus {
 
 input[type="submit"] {
   margin-top: 28px;
-  width: 120px;
-  height: 32px;
+  width: 125px;
+  height: 40px;
   background: #16a085;
   border: none;
   border-radius: 20px;
@@ -10275,8 +10274,8 @@ button.social-signin.google {
 
 .reg-btn{
   margin-top: 28px;
-  width: 120px;
-  height: 32px;
+  width: 125px;
+  height: 40px;
   background: #16a085;
   border: none;
   border-radius: 20px;
@@ -10288,4 +10287,29 @@ button.social-signin.google {
 }
 .reg-btn:hover{
   cursor: pointer;
+}
+.reg-boxes-div{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  align-self: center;
+  width: 350px;
+  margin-bottom: 30px;
+}
+
+.form-holder{
+  display: flex;
+  flex-direction: column;
+  align-items: baseline;
+}
+
+.invalid-feedback, #password-error{
+  display: flex;
+  justify-content: center;
+  text-align: center;
+}
+.reg-form h1{
+  color: white;
+  font-size: 32px;
+  font-weight: bold;
 }
