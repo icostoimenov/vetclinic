@@ -10102,20 +10102,22 @@ body {
   font-weight: 300;
 }
 
-#login-box {
+#register-box {
+  display: flex;
   position: relative;
+  top: 67px;
   margin: 5% auto;
   width: 600px;
   height: 400px;
-  background-image: url(../img/Puppy-Owner.jpg);
-  border-radius: 2px;
+  background-color: rgba(0, 0, 0, 0.5);
+  border-radius: 70px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
 }
 
 .left {
   position: absolute;
   top: 0;
-  left: 0;
+  left: 151px;
   box-sizing: border-box;
   padding: 40px;
   width: 300px;
@@ -10129,7 +10131,7 @@ h1 {
 }
 
 input[type="text"],
-input[type="password"] {
+input[type="password"], input[type = "email"], input[type = "number"] {
   display: block;
   box-sizing: border-box;
   margin-bottom: 20px;
@@ -10157,7 +10159,7 @@ input[type="submit"] {
   height: 32px;
   background: #16a085;
   border: none;
-  border-radius: 2px;
+  border-radius: 20px;
   color: #FFF;
   font-family: 'Roboto', sans-serif;
   font-weight: 500;
@@ -10248,4 +10250,42 @@ button.social-signin.twitter {
 
 button.social-signin.google {
   background: #DD4B39;
+}
+
+.reg-div{
+  background-repeat: no-repeat;
+  background-size: auto;
+  background-image: linear-gradient(rgba(255,255,255, 0), rgba(255,255,255,0)), url('../img/group-pets.jpeg');
+  height: 1000px;
+}
+
+.alert-danger{
+  margin-bottom: 35px;
+}
+
+.register-btn-div {
+  display: flex;
+  justify-content: center;
+}
+.reg-form{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.reg-btn{
+  margin-top: 28px;
+  width: 120px;
+  height: 32px;
+  background: #16a085;
+  border: none;
+  border-radius: 20px;
+  color: #FFF;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 500;
+  text-transform: uppercase;
+  transition: 0.1s ease;
+}
+.reg-btn:hover{
+  cursor: pointer;
 }

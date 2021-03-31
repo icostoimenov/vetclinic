@@ -26,6 +26,7 @@ public class UserEntity extends BaseEntity {
         this.email = email;
         return this;
     }
+
     @Column(nullable = false)
     public String getFullName() {
         return fullName;
@@ -35,6 +36,7 @@ public class UserEntity extends BaseEntity {
         this.fullName = fullName;
         return this;
     }
+
     @Column(nullable = false)
     public String getPassword() {
         return password;
@@ -82,6 +84,11 @@ public class UserEntity extends BaseEntity {
 
     public UserEntity setUsername(String username) {
         this.username = username;
+        return this;
+    }
+
+    public UserEntity addRole(UserRoleEntity roleEntity) {
+        this.roles.add(roleEntity);
         return this;
     }
 }

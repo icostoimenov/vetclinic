@@ -24,12 +24,15 @@ public class VetClinicUserService implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        UserEntity userEntity = userRepository.findByUsername(username).orElseThrow(() -> new UsernameNotFoundException("User with name " + username + " was not found!"));
+        UserEntity userEntity = userRepository.findByUsername(username)
+                .orElseThrow(() -> new UsernameNotFoundException("User with name " + username + " was not found!"));
         return mapToUserDetails(userEntity);
     }
 
     private UserDetails mapToUserDetails(UserEntity userEntity) {
-        List<GrantedAuthority> authorities = userEntity.getRoles().stream().map(r -> new SimpleGrantedAuthority(r.getRole().name())).collect(Collectors.toList());
+        List<GrantedAuthority> authorities = userEntity.getRoles().stream()
+                .map(r -> new SimpleGrantedAuthority("ROLE_" + r.getRole().name()))
+                .collect(Collectors.toList());
 
         return new User(
                 userEntity.getUsername(),

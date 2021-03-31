@@ -2,7 +2,7 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 
 <head th:insert="fragments/commons :: head">
-<!--    <link rel="stylesheet" href="../static/css/login.css">-->
+
 </head>
 
 <body class="img js-fullheight" >
@@ -20,17 +20,21 @@
             <div class="col-md-6 col-lg-4">
                 <div class="login-wrap p-0">
 
-                    <form action="#" class="signin-form">
+                    <div th:if="${bad_credentials}" class="alert alert-danger" role="alert">
+                        This username and password combination does not exist.
+                    </div>
+
+                    <form th:action="@{/users/login}" method="POST" class="signin-form">
                         <div class="form-group">
-                            <input type="text" class="form-control" placeholder="Username" required>
+                            <input name="username" type="text" th:value="${username}" class="form-control" placeholder="Username" required>
                         </div>
                         <div class="form-group">
-                            <input id="password-field" type="password" class="form-control" placeholder="Password"
+                            <input name="password" id="password-field" type="password" class="form-control" placeholder="Password"
                                    required>
                             <span toggle="#password-field" class="fa fa-fw fa-eye field-icon toggle-password"></span>
                         </div>
                         <div class="form-group">
-                            <button type="submit" class="form-control btn btn-primary submit px-3">Sign In</button>
+                            <button type="submit" class="form-control btn btn-primary submit px-3">Login</button>
                         </div>
 
                     </form>
@@ -44,10 +48,10 @@
 
 <footer th:replace="fragments/commons :: footer"></footer>
 
-<script src="../static/js/login/jquery.min.js"></script>
-<script src="../static/js/login/popper.js"></script>
-<script src="../static/js/login/bootstrap.min.js"></script>
-<script src="../static/js/login/main.js"></script>
+<script src="../js/login/jquery.min.js"></script>
+<script src="../js/login/popper.js"></script>
+<script src="../js/login/bootstrap.min.js"></script>
+<script src="../js/login/main.js"></script>
 
 </body>
 </html>
