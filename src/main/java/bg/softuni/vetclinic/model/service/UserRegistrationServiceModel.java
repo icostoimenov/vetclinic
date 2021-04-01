@@ -2,20 +2,11 @@ package bg.softuni.vetclinic.model.service;
 
 public class UserRegistrationServiceModel {
 
-    private String username;
     private String email;
     private String fullName;
     private String password;
     private int phoneNumber;
 
-    public String getUsername() {
-        return username;
-    }
-
-    public UserRegistrationServiceModel setUsername(String username) {
-        this.username = username;
-        return this;
-    }
 
     public String getEmail() {
         return email;

@@ -2,6 +2,7 @@ package bg.softuni.vetclinic.model.entities;
 
 
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.OneToMany;
 import java.util.ArrayList;
@@ -14,6 +15,8 @@ public class DoctorEntity extends UserEntity {
     private List<PetEntity> patients = new ArrayList<>();
 
 
+
+    @Column
     public String getSpecialization() {
         return specialization;
     }

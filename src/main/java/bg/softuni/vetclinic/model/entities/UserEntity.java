@@ -9,7 +9,6 @@ import java.util.List;
 @Table(name = "users")
 public class UserEntity extends BaseEntity {
 
-    private String username;
     private String email;
     private String fullName;
     private String password;
@@ -77,15 +76,6 @@ public class UserEntity extends BaseEntity {
         return this;
     }
 
-    @Column(nullable = false)
-    public String getUsername() {
-        return username;
-    }
-
-    public UserEntity setUsername(String username) {
-        this.username = username;
-        return this;
-    }
 
     public UserEntity addRole(UserRoleEntity roleEntity) {
         this.roles.add(roleEntity);

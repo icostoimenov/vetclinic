@@ -1,19 +1,22 @@
 package bg.softuni.vetclinic.model.binding;
 
-
+import bg.softuni.vetclinic.model.entities.PetEntity;
 import bg.softuni.vetclinic.validators.FieldMatch;
 
 import javax.validation.constraints.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @FieldMatch(first = "password", second = "confirmPassword")
-public class UserRegistrationBindingModel {
-
+public class DoctorRegistrationBindingModel {
 
     private String email;
     private String fullName;
     private String password;
     private String confirmPassword;
+    private String specialization;
     private int phoneNumber;
+    private List<PetEntity> patients = new ArrayList<>();
 
 
     @NotEmpty
@@ -22,7 +25,7 @@ public class UserRegistrationBindingModel {
         return email;
     }
 
-    public UserRegistrationBindingModel setEmail(String email) {
+    public DoctorRegistrationBindingModel setEmail(String email) {
         this.email = email;
         return this;
     }
@@ -34,7 +37,7 @@ public class UserRegistrationBindingModel {
     }
 
 
-    public UserRegistrationBindingModel setFullName(String fullName) {
+    public DoctorRegistrationBindingModel setFullName(String fullName) {
         this.fullName = fullName;
         return this;
     }
@@ -45,7 +48,7 @@ public class UserRegistrationBindingModel {
         return password;
     }
 
-    public UserRegistrationBindingModel setPassword(String password) {
+    public DoctorRegistrationBindingModel setPassword(String password) {
         this.password = password;
         return this;
     }
@@ -55,7 +58,7 @@ public class UserRegistrationBindingModel {
         return confirmPassword;
     }
 
-    public UserRegistrationBindingModel setConfirmPassword(String confirmPassword) {
+    public DoctorRegistrationBindingModel setConfirmPassword(String confirmPassword) {
         this.confirmPassword = confirmPassword;
         return this;
     }
@@ -66,8 +69,27 @@ public class UserRegistrationBindingModel {
         return phoneNumber;
     }
 
-    public UserRegistrationBindingModel setPhoneNumber(int phoneNumber) {
+    public DoctorRegistrationBindingModel setPhoneNumber(int phoneNumber) {
         this.phoneNumber = phoneNumber;
+        return this;
+    }
+
+    @NotEmpty
+    public String getSpecialization() {
+        return specialization;
+    }
+
+    public DoctorRegistrationBindingModel setSpecialization(String specialization) {
+        this.specialization = specialization;
+        return this;
+    }
+
+    public List<PetEntity> getPatients() {
+        return patients;
+    }
+
+    public DoctorRegistrationBindingModel setPatients(List<PetEntity> patients) {
+        this.patients = patients;
         return this;
     }
 }

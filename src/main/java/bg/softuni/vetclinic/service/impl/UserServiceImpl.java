@@ -4,6 +4,7 @@ import bg.softuni.vetclinic.model.entities.DoctorEntity;
 import bg.softuni.vetclinic.model.entities.UserEntity;
 import bg.softuni.vetclinic.model.entities.UserRoleEntity;
 import bg.softuni.vetclinic.model.enums.UserRole;
+import bg.softuni.vetclinic.model.service.DoctorRegistrationServiceModel;
 import bg.softuni.vetclinic.model.service.UserRegistrationServiceModel;
 import bg.softuni.vetclinic.repositories.UserRepository;
 import bg.softuni.vetclinic.repositories.UserRoleRepository;
@@ -47,9 +48,9 @@ public class UserServiceImpl implements UserService {
 
             userRoleRepository.saveAll(List.of(adminRole, doctorRole, userRole));
 
-            UserEntity admin = new UserEntity().setUsername("admin").setFullName("Admin Adminov").setEmail("admin@vet.bg").setPhoneNumber(555231345).setPassword(passwordEncoder.encode("123456"));
-            UserEntity doctor = new DoctorEntity().setSpecialization("psychologist").setUsername("doctor").setFullName("Dr Dolittle").setEmail("thedoc@vet.bg").setPhoneNumber(33325870).setPassword(passwordEncoder.encode("123456"));
-            UserEntity user = new UserEntity().setUsername("user").setFullName("Dummy User").setEmail("user@dummy.bg").setPhoneNumber(555875492).setPassword(passwordEncoder.encode("123456"));
+            UserEntity admin = new UserEntity().setFullName("Admin Adminov").setEmail("admin@vet.bg").setPhoneNumber(555231345).setPassword(passwordEncoder.encode("123456"));
+            UserEntity doctor = new DoctorEntity().setSpecialization("psychologist").setFullName("Dr Dolittle").setEmail("thedoc@vet.bg").setPhoneNumber(33325870).setPassword(passwordEncoder.encode("123456"));
+            UserEntity user = new UserEntity().setFullName("Dummy User").setEmail("user@dummy.bg").setPhoneNumber(555875492).setPassword(passwordEncoder.encode("123456"));
 
 
             admin.setRoles(List.of(adminRole, doctorRole, userRole));
@@ -70,10 +71,27 @@ public class UserServiceImpl implements UserService {
 
         newUser = userRepository.save(newUser);
 
-        UserDetails principal = vetClinicUserService.loadUserByUsername(newUser.getUsername());
+        UserDetails principal = vetClinicUserService.loadUserByUsername(newUser.getEmail());
         Authentication authentication = new UsernamePasswordAuthenticationToken(
                 principal, newUser.getPassword(), principal.getAuthorities());
         SecurityContextHolder.getContext().setAuthentication(authentication);
 
+    }
+
+    public void registerAndLoginDoctor(DoctorRegistrationServiceModel serviceModel){
+        DoctorEntity newDoctor = modelMapper.map(serviceModel, DoctorEntity.class);
+        newDoctor.setPassword(passwordEncoder.encode(serviceModel.getPassword()));
+
+        UserRoleEntity userRole = userRoleRepository.findByRole(UserRole.USER).orElseThrow(() -> new IllegalStateException("USER role not found. Please seed the roles!"));
+        UserRoleEntity docRole = userRoleRepository.findByRole(UserRole.DOCTOR).orElseThrow(() -> new IllegalStateException("DOCTOR role not found. Please seed the roles!"));
+        newDoctor.addRole(docRole);
+        newDoctor.addRole(userRole);
+
+        newDoctor = userRepository.save(newDoctor);
+
+        UserDetails principal = vetClinicUserService.loadUserByUsername(newDoctor.getEmail());
+        Authentication authentication = new UsernamePasswordAuthenticationToken(
+                principal, newDoctor.getPassword(), principal.getAuthorities());
+        SecurityContextHolder.getContext().setAuthentication(authentication);
     }
 }

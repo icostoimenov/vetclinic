@@ -23,9 +23,9 @@ public class VetClinicUserService implements UserDetailsService {
     }
 
     @Override
-    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        UserEntity userEntity = userRepository.findByUsername(username)
-                .orElseThrow(() -> new UsernameNotFoundException("User with name " + username + " was not found!"));
+    public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
+        UserEntity userEntity = userRepository.findByEmail(email)
+                .orElseThrow(() -> new UsernameNotFoundException("User with email " + email + " was not found!"));
         return mapToUserDetails(userEntity);
     }
 
@@ -35,7 +35,7 @@ public class VetClinicUserService implements UserDetailsService {
                 .collect(Collectors.toList());
 
         return new User(
-                userEntity.getUsername(),
+                userEntity.getEmail(),
                 userEntity.getPassword(),
                 authorities
         );

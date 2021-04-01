@@ -43,7 +43,7 @@ public class UserController {
     }
 
     @PostMapping("/register")
-    public String registerAndLogin(@Valid UserRegistrationBindingModel registrationBindingModel, BindingResult bindingResult, RedirectAttributes redirectAttributes) {
+    public String registerAndLoginUser(@Valid UserRegistrationBindingModel registrationBindingModel, BindingResult bindingResult, RedirectAttributes redirectAttributes) {
 
         if (bindingResult.hasErrors()) {
             redirectAttributes.addFlashAttribute("registrationBindingModel", registrationBindingModel);
