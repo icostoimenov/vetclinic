@@ -19,28 +19,33 @@
                     <div class="form-holder">
 
                         <div class="reg-boxes-div">
-                            <input type="text" th:value="*{fullName}" th:errorclass="is-invalid" name="fullName"
+                            <input type="text"
+                                   th:value="*{fullName}"
+                                   th:field="*{fullName}"
+                                   th:errorclass="is-invalid"
+                                   name="fullName"
                                    placeholder="Full Name"/>
-                            <small id="fullNameError"
-                                   class="invalid-feedback text-light form-text bg-danger rounded">Full name length must be
+                            <small th:if="${#fields.hasErrors('fullName')}" id="fullNameError"
+                                   class="invalid-feedback text-light form-text bg-danger rounded">Full name length must
+                                be
                                 between 5 and 50 characters</small>
                         </div>
 
                         <div class="reg-boxes-div">
-                            <input type="email" th:value="*{email}" th:errorclass="is-invalid" name="email"
+                            <input type="email" th:value="*{email}" th:field="*{email}" th:errorclass="is-invalid" name="email"
                                    placeholder="E-mail"/>
                             <small th:if="${userExistsError}" id="usernameUniqueError"
                                    class="text-light form-text bg-danger rounded">Email is already used</small>
-                            <small id="emailError"
+                            <small th:if="${#fields.hasErrors('email')}" id="emailError"
                                    class="invalid-feedback text-light form-text bg-danger rounded">Must be valid
                                 email</small>
                         </div>
 
 
                         <div class="reg-boxes-div">
-                            <input type="number" th:value="*{phoneNumber}" th:errorclass="is-invalid" name="phoneNumber"
+                            <input type="number" th:value="*{phoneNumber}" th:field="*{phoneNumber}" th:errorclass="is-invalid" name="phoneNumber"
                                    placeholder="Phone number"/>
-                            <small id="phoneError"
+                            <small th:if="${#fields.hasErrors('phoneNumber')}" id="phoneError"
                                    class="invalid-feedback text-light form-text bg-danger rounded">
                                 Phone number must be more than 6 digits.
                             </small>
@@ -48,16 +53,16 @@
 
 
                         <div class="reg-boxes-div">
-                            <input type="password" th:errorclass="is-invalid" name="password" placeholder="Password"/>
-                            <small id="passwordError"
+                            <input type="password" th:errorclass="is-invalid" th:field="*{password}" name="password" placeholder="Password"/>
+                            <small th:if="${#fields.hasErrors('password')}" id="passwordError"
                                    class="invalid-feedback text-light form-text bg-danger rounded">
                                 Password length must be between 5 and 20 characters and passwords should match.
                             </small></div>
 
                         <div class="reg-boxes-div">
-                            <input type="password" th:errorclass="is-invalid" name="confirmPassword"
+                            <input type="password" th:errorclass="is-invalid" th:field="*{confirmPassword}" name="confirmPassword"
                                    placeholder="Retype password"/>
-                            <small id="confirmPasswordError"
+                            <small th:if="${#fields.hasErrors('confirmPassword')}" id="confirmPasswordError"
                                    class="invalid-feedback text-light form-text bg-danger rounded">
                                 Password length must be between 5 and 20 characters and passwords should match.
                             </small>

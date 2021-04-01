@@ -13,42 +13,45 @@
     <div class="reg-div">
         <div id="register-box">
             <div class="left">
-                <form class="reg-form" th:action="@{/doctors/register}"
+                <form class="reg-form" th:action="@{/doctors/register}" th:object="${registrationBindingModel}"
                       method="POST">
                     <h1>Register new Doctor</h1>
                     <div class="form-holder">
 
                         <div class="reg-boxes-div">
-                            <input type="text"     name="fullName" placeholder="Full Name"/>
-                            <small id="fullNameError"
-                                   class="invalid-feedback text-light form-text bg-danger rounded">Full name length must be
+                            <input type="text" th:value="*{fullName}" th:field="*{fullName}" th:errorclass="is-invalid" name="fullName"
+                                   placeholder="Full Name"/>
+                            <small th:if="${#fields.hasErrors('fullName')}" id="fullNameError"
+                                   class="invalid-feedback text-light form-text bg-danger rounded">Full name length must
+                                be
                                 between 5 and 50 characters</small>
                         </div>
 
                         <div class="reg-boxes-div">
-                            <input type="email"   name="email"
+                            <input type="email" th:value="*{email}" th:field="*{email}" th:errorclass="is-invalid" name="email"
                                    placeholder="E-mail"/>
-                            <small id="emailError"
+                            <small th:if="${#fields.hasErrors('email')}" id="emailError"
                                    class="invalid-feedback text-light form-text bg-danger rounded">Must be valid
                                 email</small>
-                            <small  id="emailUniqueError"
+                            <small th:if="${userExistsError}" id="emailUniqueError"
                                    class="text-light form-text bg-danger rounded">Email is already occupied</small>
                         </div>
 
 
                         <div class="reg-boxes-div">
-                            <input type="number"   name="phoneNumber"
+                            <input type="number" th:value="*{phoneNumber}" th:field="*{phoneNumber}" th:errorclass="is-invalid" name="phoneNumber"
                                    placeholder="Phone number"/>
-                            <small id="phoneError"
+                            <small th:if="${#fields.hasErrors('phoneNumber')}" id="phoneError"
                                    class="invalid-feedback text-light form-text bg-danger rounded">
                                 Phone number must be more than 6 digits.
                             </small>
                         </div>
 
                         <div class="reg-boxes-div">
-                            <input type="text"   name="specialization"
+                            <input type="text" th:value="*{specialization}" th:field="*{specialization}" th:errorclass="is-invalid"
+                                   name="specialization"
                                    placeholder="Specialization"/>
-                            <small id="specError"
+                            <small th:if="${#fields.hasErrors('specialization')}" id="specError"
                                    class="invalid-feedback text-light form-text bg-danger rounded">
                                 Phone number must be more than 6 digits.
                             </small>
@@ -56,16 +59,16 @@
 
 
                         <div class="reg-boxes-div">
-                            <input type="password"  name="password" placeholder="Password"/>
-                            <small id="passwordError"
+                            <input type="password" th:errorclass="is-invalid" th:field="*{password}" name="password" placeholder="Password"/>
+                            <small th:if="${#fields.hasErrors('password')}" id="passwordError"
                                    class="invalid-feedback text-light form-text bg-danger rounded">
                                 Password length must be between 5 and 20 characters and passwords should match.
                             </small></div>
 
                         <div class="reg-boxes-div">
-                            <input type="password"  name="confirmPassword"
+                            <input type="password" th:errorclass="is-invalid " th:field="*{confirmPassword}" name="confirmPassword"
                                    placeholder="Retype password"/>
-                            <small id="confirmPasswordError"
+                            <small th:if="${#fields.hasErrors('confirmPassword')}" id="confirmPasswordError"
                                    class="invalid-feedback text-light form-text bg-danger rounded">
                                 Password length must be between 5 and 20 characters and passwords should match.
                             </small>
