@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head th:insert="fragments/commons :: head">
+
+</head>
+<body style="background-image: url(../img/add-pet-bg.jpg); background-repeat: no-repeat; background-size: 1870px 1237px; padding-right: 0">
+
+<header id="header" class="fixed-top" th:replace="fragments/commons :: header"></header>
+
+<section class="add-pet-section" >
+
+    <form class="cf">
+
+        <div class="half left cf">
+            <h1>Register your pet</h1>
+            <input type="text" id="input-name" name="name" placeholder="Name">
+            <input type="number" id="input-age" name="age" placeholder="Age">
+            <input type="text" id="input-subject" name="gender" placeholder="Gender">
+            <input type="text" id="input-image" name="imageUrl" placeholder="Image URL">
+
+            <select name="type" id="cars" >
+                <option value="" disabled selected>Pet type</option>
+                <option th:each="g : ${T(bg.softuni.vetclinic.model.entities.enums.PetType).values()}" th:value="${g}" th:text="${g}">First Type</option>
+            </select>
+            <input type="submit" value="Submit" id="input-submit">
+        </div>
+
+
+
+    </form>
+</section>
+
+<footer th:replace="fragments/commons :: footer"></footer>
+</body>
+</html>

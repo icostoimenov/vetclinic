@@ -1,6 +1,6 @@
 package bg.softuni.vetclinic.model.entities;
 
-import bg.softuni.vetclinic.model.enums.PetType;
+import bg.softuni.vetclinic.model.entities.enums.PetType;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -15,7 +15,7 @@ public class PetEntity extends BaseEntity {
     private String gender;
     private PetType type;
     private String imageUrl;
-    private String ownerName;
+    private UserEntity owner;
     private List<String> diagnoses = new ArrayList<>();
 
     @Column(nullable = false)
@@ -68,15 +68,6 @@ public class PetEntity extends BaseEntity {
         return this;
     }
 
-    @Column(nullable = false)
-    public String getOwnerName() {
-        return ownerName;
-    }
-
-    public PetEntity setOwnerName(String ownerName) {
-        this.ownerName = ownerName;
-        return this;
-    }
 
     @ElementCollection
     public List<String> getDiagnoses() {
@@ -85,6 +76,16 @@ public class PetEntity extends BaseEntity {
 
     public PetEntity setDiagnoses(List<String> diagnoses) {
         this.diagnoses = diagnoses;
+        return this;
+    }
+
+    @ManyToOne
+    public UserEntity getOwner() {
+        return owner;
+    }
+
+    public PetEntity setOwner(UserEntity owner) {
+        this.owner = owner;
         return this;
     }
 }

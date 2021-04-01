@@ -3,7 +3,7 @@ package bg.softuni.vetclinic.service.impl;
 import bg.softuni.vetclinic.model.entities.DoctorEntity;
 import bg.softuni.vetclinic.model.entities.UserEntity;
 import bg.softuni.vetclinic.model.entities.UserRoleEntity;
-import bg.softuni.vetclinic.model.enums.UserRole;
+import bg.softuni.vetclinic.model.entities.enums.UserRole;
 import bg.softuni.vetclinic.model.service.DoctorRegistrationServiceModel;
 import bg.softuni.vetclinic.model.service.UserRegistrationServiceModel;
 import bg.softuni.vetclinic.repositories.UserRepository;
@@ -78,7 +78,7 @@ public class UserServiceImpl implements UserService {
 
     }
 
-    public void registerAndLoginDoctor(DoctorRegistrationServiceModel serviceModel){
+    public void registerAndLoginDoctor(DoctorRegistrationServiceModel serviceModel) {
         DoctorEntity newDoctor = modelMapper.map(serviceModel, DoctorEntity.class);
         newDoctor.setPassword(passwordEncoder.encode(serviceModel.getPassword()));
 
@@ -93,5 +93,11 @@ public class UserServiceImpl implements UserService {
         Authentication authentication = new UsernamePasswordAuthenticationToken(
                 principal, newDoctor.getPassword(), principal.getAuthorities());
         SecurityContextHolder.getContext().setAuthentication(authentication);
+    }
+
+    @Override
+    public boolean emailExists(String email) {
+        return userRepository.findByEmail(email).isPresent() || userRepository.findByEmailAndRolesContains(email, UserRole.DOCTOR.name()).isPresent();
+
     }
 }

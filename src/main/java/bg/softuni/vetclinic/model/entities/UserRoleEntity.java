@@ -1,6 +1,6 @@
 package bg.softuni.vetclinic.model.entities;
 
-import bg.softuni.vetclinic.model.enums.UserRole;
+import bg.softuni.vetclinic.model.entities.enums.UserRole;
 
 import javax.persistence.Entity;
 import javax.persistence.EnumType;

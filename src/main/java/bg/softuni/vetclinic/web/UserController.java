@@ -35,7 +35,7 @@ public class UserController {
     @GetMapping("/login")
     public String login() {
         return "login";
-    }
+   }
 
     @GetMapping("/register")
     public String register() {
@@ -48,6 +48,13 @@ public class UserController {
         if (bindingResult.hasErrors()) {
             redirectAttributes.addFlashAttribute("registrationBindingModel", registrationBindingModel);
             redirectAttributes.addFlashAttribute("org.springframework.validation.BindingResult.registrationBindingModel", bindingResult);
+
+            return "redirect:/users/register";
+        }
+
+        if(userService.emailExists(registrationBindingModel.getEmail())){
+            redirectAttributes.addFlashAttribute("registrationBindingModel", registrationBindingModel);
+            redirectAttributes.addFlashAttribute("userExistsError", true);
 
             return "redirect:/users/register";
         }

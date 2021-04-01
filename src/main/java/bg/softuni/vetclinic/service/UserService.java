@@ -9,4 +9,6 @@ public interface UserService {
 
     void registerAndLoginUser(UserRegistrationServiceModel serviceModel);
     void registerAndLoginDoctor(DoctorRegistrationServiceModel serviceModel);
+
+    boolean emailExists(String email);
 }

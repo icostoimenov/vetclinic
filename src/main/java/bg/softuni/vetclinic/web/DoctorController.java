@@ -1,10 +1,8 @@
 package bg.softuni.vetclinic.web;
 
 import bg.softuni.vetclinic.model.binding.DoctorRegistrationBindingModel;
-import bg.softuni.vetclinic.model.binding.UserRegistrationBindingModel;
 import bg.softuni.vetclinic.model.entities.DoctorEntity;
 import bg.softuni.vetclinic.model.service.DoctorRegistrationServiceModel;
-import bg.softuni.vetclinic.model.service.UserRegistrationServiceModel;
 import bg.softuni.vetclinic.service.UserService;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Controller;
@@ -47,6 +45,13 @@ public class DoctorController {
         if (bindingResult.hasErrors()) {
             redirectAttributes.addFlashAttribute("registrationBindingModel", registrationBindingModel);
             redirectAttributes.addFlashAttribute("org.springframework.validation.BindingResult.registrationBindingModel", bindingResult);
+
+            return "redirect:/doctors/register";
+        }
+
+        if(userService.emailExists(registrationBindingModel.getEmail())){
+            redirectAttributes.addFlashAttribute("registrationBindingModel", registrationBindingModel);
+            redirectAttributes.addFlashAttribute("doctorExistsError", true);
 
             return "redirect:/doctors/register";
         }

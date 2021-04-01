@@ -33,8 +33,8 @@
                             <small th:if="${#fields.hasErrors('email')}" id="emailError"
                                    class="invalid-feedback text-light form-text bg-danger rounded">Must be valid
                                 email</small>
-                            <small th:if="${userExistsError}" id="emailUniqueError"
-                                   class="text-light form-text bg-danger rounded">Email is already occupied</small>
+                            <small th:if="${doctorExistsError}" id="emailUniqueError"
+                                   class="invalid-feedback text-light form-text bg-danger rounded">Email is already occupied</small>
                         </div>
 
 

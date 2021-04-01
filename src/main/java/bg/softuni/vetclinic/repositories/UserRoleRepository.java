@@ -1,7 +1,7 @@
 package bg.softuni.vetclinic.repositories;
 
 import bg.softuni.vetclinic.model.entities.UserRoleEntity;
-import bg.softuni.vetclinic.model.enums.UserRole;
+import bg.softuni.vetclinic.model.entities.enums.UserRole;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

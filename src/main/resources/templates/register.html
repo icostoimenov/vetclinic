@@ -35,7 +35,7 @@
                             <input type="email" th:value="*{email}" th:field="*{email}" th:errorclass="is-invalid" name="email"
                                    placeholder="E-mail"/>
                             <small th:if="${userExistsError}" id="usernameUniqueError"
-                                   class="text-light form-text bg-danger rounded">Email is already used</small>
+                                   class="invalid-feedback text-light form-text bg-danger rounded">Email is already used</small>
                             <small th:if="${#fields.hasErrors('email')}" id="emailError"
                                    class="invalid-feedback text-light form-text bg-danger rounded">Must be valid
                                 email</small>
