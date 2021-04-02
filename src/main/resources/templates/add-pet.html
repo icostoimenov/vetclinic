@@ -25,8 +25,8 @@
 
             <select th:value="*{gender}" th:errorclass="is-invalid" name="gender" id="gender" >
                 <option value="" selected disabled hidden>Gender</option>
-                <option value="male" >Male</option>
-                <option value="female" >Female</option>
+                <option value="Male" >Male</option>
+                <option value="Female" >Female</option>
             </select>
             <small th:if="${#fields.hasErrors('gender')}" id="gender-err"
                    class="invalid-feedback text-light form-text bg-danger rounded">Please select pet gender.</small>

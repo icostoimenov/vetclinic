@@ -22,8 +22,8 @@
                     <div class="pic"><img th:src="*{p.imageUrl}" class="img-fluid" alt=""></div>
                     <div class="member-info">
                         <h4 th:text="*{p.name}">Name</h4>
-                        <span th:text="*{p.gender}">Type</span>
-                        <p th:text="*{p.age}"></p>
+                        <span th:text="*{p.gender}">Gender</span>
+                        <p th:text="*{p.age + ' years old'}">Age</p> <p th:text="*{p.type}">Type</p>
 <!--                        <div class="social">-->
 <!--                            <a href=""><i class="ri-twitter-fill"></i></a>-->
 <!--                            <a href=""><i class="ri-facebook-fill"></i></a>-->
