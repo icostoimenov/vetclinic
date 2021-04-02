@@ -11,7 +11,7 @@ import java.util.List;
 public class PetEntity extends BaseEntity {
 
     private String name;
-    private int age;
+    private Integer age;
     private String gender;
     private PetType type;
     private String imageUrl;
@@ -29,11 +29,11 @@ public class PetEntity extends BaseEntity {
     }
 
     @Column(nullable = false)
-    public int getAge() {
+    public Integer getAge() {
         return age;
     }
 
-    public PetEntity setAge(int age) {
+    public PetEntity setAge(Integer age) {
         this.age = age;
         return this;
     }
@@ -58,7 +58,7 @@ public class PetEntity extends BaseEntity {
         return this;
     }
 
-    @Column(nullable = false)
+
     public String getImageUrl() {
         return imageUrl;
     }

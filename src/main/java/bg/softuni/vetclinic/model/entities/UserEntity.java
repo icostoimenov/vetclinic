@@ -4,6 +4,7 @@ package bg.softuni.vetclinic.model.entities;
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 @Entity
 @Table(name = "users")
@@ -13,7 +14,7 @@ public class UserEntity extends BaseEntity {
     private String fullName;
     private String password;
     private int phoneNumber;
-    private List<PetEntity> pets;
+    private Set<PetEntity> pets;
     private List<UserRoleEntity> roles = new ArrayList<>();
 
     @Column(nullable = false)
@@ -46,12 +47,12 @@ public class UserEntity extends BaseEntity {
         return this;
     }
 
-    @OneToMany
-    public List<PetEntity> getPets() {
+    @OneToMany(fetch = FetchType.EAGER)
+    public Set<PetEntity> getPets() {
         return pets;
     }
 
-    public UserEntity setPets(List<PetEntity> pets) {
+    public UserEntity setPets(Set<PetEntity> pets) {
         this.pets = pets;
         return this;
     }

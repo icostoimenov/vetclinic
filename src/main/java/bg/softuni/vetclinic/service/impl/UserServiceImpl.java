@@ -100,4 +100,10 @@ public class UserServiceImpl implements UserService {
         return userRepository.findByEmail(email).isPresent() || userRepository.findByEmailAndRolesContains(email, UserRole.DOCTOR.name()).isPresent();
 
     }
+
+    @Override
+    public UserEntity findByEmail(String email) {
+
+        return userRepository.findByEmail(email).orElseThrow(IllegalArgumentException::new);
+    }
 }
