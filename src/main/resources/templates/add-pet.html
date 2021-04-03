@@ -46,7 +46,7 @@
                    class="invalid-feedback text-light form-text bg-danger rounded">Please select pet type.</small>
 
             <div class="inputfile-box">
-                <input type="file" id="file" class="inputfile" style="display: none" onchange='uploadFile(this)'>
+                <input th:field="*{imageUrl}" type="file" id="file" class="inputfile" style="display: none" onchange='uploadFile(this)'>
                 <label  for="file"  >
                     <span id="file-name" class="file-box"  >Select your pet image</span>
                     <span class="file-button">
