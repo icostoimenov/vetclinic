@@ -1,6 +1,7 @@
 package bg.softuni.vetclinic.model.binding;
 
 import bg.softuni.vetclinic.model.entities.enums.PetType;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
@@ -12,7 +13,7 @@ public class PetAddBindingModel {
     private Integer age;
     private String gender;
     private PetType type;
-    private String imageUrl;
+    private MultipartFile imageUrl;
 
     @Size(min = 3)
     public String getName() {
@@ -54,11 +55,11 @@ public class PetAddBindingModel {
         return this;
     }
 
-    public String getImageUrl() {
+    public MultipartFile getImageUrl() {
         return imageUrl;
     }
 
-    public PetAddBindingModel setImageUrl(String imageUrl) {
+    public PetAddBindingModel setImageUrl(MultipartFile imageUrl) {
         this.imageUrl = imageUrl;
         return this;
     }

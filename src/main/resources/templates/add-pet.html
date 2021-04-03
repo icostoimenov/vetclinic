@@ -10,7 +10,7 @@
 
 <section class="add-pet-section" >
 
-    <form th:action="@{/pets/add-pet}" method="POST" th:object="${petAddBindingModel}" class="cf">
+    <form th:action="@{/pets/add-pet}" method="POST" th:object="${petAddBindingModel}" class="cf" enctype="multipart/form-data">
 
         <div class="half left cf">
             <h1>Register your pet</h1>
@@ -23,6 +23,7 @@
 
 <!--            <input th:field="*{gender}" th:errorclass="is-invalid" type="text" id="input-subject" name="gender" placeholder="Gender">-->
 
+
             <select th:value="*{gender}" th:errorclass="is-invalid" name="gender" id="gender" >
                 <option value="" selected disabled hidden>Gender</option>
                 <option value="Male" >Male</option>
@@ -30,7 +31,12 @@
             </select>
             <small th:if="${#fields.hasErrors('gender')}" id="gender-err"
                    class="invalid-feedback text-light form-text bg-danger rounded">Please select pet gender.</small>
-            <input th:field="*{imageUrl}" type="text" id="input-image" name="imageUrl" placeholder="Image URL">
+
+
+
+<!--            <input th:field="*{imageUrl}"  type="file" id="myFile" name="filename" placeholder="Select image">-->
+
+<!--            <input th:field="*{imageUrl}" type="text" id="input-image" name="imageUrl" placeholder="Image URL">-->
 
             <select th:value="*{type}" th:errorclass="is-invalid" name="type" id="petType" >
                 <option value="" selected = "selected" disabled >Pet type</option>
@@ -38,6 +44,18 @@
             </select>
             <small th:if="${#fields.hasErrors('type')}"  id="typeError"
                    class="invalid-feedback text-light form-text bg-danger rounded">Please select pet type.</small>
+
+            <div class="inputfile-box">
+                <input type="file" id="file" class="inputfile" style="display: none" onchange='uploadFile(this)'>
+                <label  for="file"  >
+                    <span id="file-name" class="file-box"  >Select your pet image</span>
+                    <span class="file-button">
+                      <i class="fa fa-upload" aria-hidden="true"></i>
+                         Select File
+                     </span>
+                </label>
+            </div>
+
             <input type="submit" value="Submit" id="input-submit">
         </div>
 
@@ -47,5 +65,7 @@
 </section>
 
 <footer th:replace="fragments/commons :: footer"></footer>
+
+<script src="/js/upload-btn.js"></script>
 </body>
 </html>

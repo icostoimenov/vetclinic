@@ -13753,4 +13753,36 @@ h1 {
 .cf:after {
     clear: both;
 }
+.inputfile-box {
+    position: relative;
+    background: white;
+    border-radius: 8px;
+    margin-top: 11px;
+}
 
+.inputfile {
+    display: none;
+}
+
+.container {
+    display: inline-block;
+    width: 100%;
+}
+
+.file-box {
+    display: inline-block;
+    width: 100%;
+    max-width: 495px;
+    padding: 5px 0px 5px 5px;
+    box-sizing: border-box;
+    height: calc(2rem - 2px);
+    text-overflow: ellipsis;
+    overflow: hidden;
+}
+
+.file-button {
+    background: #e74c3c;
+    padding: 5px;
+    border: 1px solid;
+    border-radius: 8px;
+}

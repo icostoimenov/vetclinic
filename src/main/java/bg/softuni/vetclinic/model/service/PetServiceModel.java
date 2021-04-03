@@ -1,6 +1,7 @@
 package bg.softuni.vetclinic.model.service;
 
 import bg.softuni.vetclinic.model.entities.enums.PetType;
+import org.springframework.web.multipart.MultipartFile;
 
 
 public class PetServiceModel {
@@ -9,7 +10,7 @@ public class PetServiceModel {
     private Integer age;
     private String gender;
     private PetType type;
-    private String imageUrl;
+    private MultipartFile imageUrl;
     private String owner;
 
     public PetServiceModel() {
@@ -51,11 +52,11 @@ public class PetServiceModel {
         return this;
     }
 
-    public String getImageUrl() {
+    public MultipartFile getImageUrl() {
         return imageUrl;
     }
 
-    public PetServiceModel setImageUrl(String imageUrl) {
+    public PetServiceModel setImageUrl(MultipartFile imageUrl) {
         this.imageUrl = imageUrl;
         return this;
     }

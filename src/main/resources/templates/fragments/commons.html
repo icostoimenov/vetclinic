@@ -77,9 +77,10 @@
                 <li><a class="nav-link scrollto" href="#services">Services</a></li>
                 <li><a class="nav-link scrollto" href="#departments">Departments</a></li>
                 <li><a class="nav-link scrollto" href="#doctors">Doctors</a></li>
-                <li><a class="nav-link " href="/pets/my-pets">My Pets</a></li>
-
                 <li><a class="nav-link scrollto" href="#contact">Contact</a></li>
+                <li><a class="nav-link " sec:authorize="isAuthenticated()" href="/pets/my-pets">My Pets</a></li>
+
+
                 <li><a class="nav-link" sec:authorize="!isAuthenticated()" th:href="@{/users/login}" >Login</a></li>
                 <li><a class="nav-link" sec:authorize="!isAuthenticated()" th:href="@{/users/register}">Register</a></li>
                 <li><form class="logout-btn-form" sec:authorize="isAuthenticated()" th:action="@{/logout}" method="post">
