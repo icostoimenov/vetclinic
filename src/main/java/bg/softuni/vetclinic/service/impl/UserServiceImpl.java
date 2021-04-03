@@ -97,7 +97,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public boolean emailExists(String email) {
-        return userRepository.findByEmail(email).isPresent() || userRepository.findByEmailAndRolesContains(email, UserRole.DOCTOR.name()).isPresent();
+        return userRepository.findByEmail(email).isPresent();
 
     }
 

@@ -13677,6 +13677,13 @@ button.social-signin.google {
     margin-top: 100px;
     padding-top: 20px;
 }
+.add-pet-btn{
+    background: #28a745;
+    border-radius: 14px;
+    padding: 5px 10px;
+    color: white;
+}
+
 html, body {
     background: #f1f1f1;
     font-family: 'Merriweather', sans-serif;
@@ -13765,7 +13772,7 @@ h1 {
 }
 
 .container {
-    display: inline-block;
+
     width: 100%;
 }
 

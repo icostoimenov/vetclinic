@@ -1,6 +1,7 @@
 package bg.softuni.vetclinic.repositories;
 
 import bg.softuni.vetclinic.model.entities.UserEntity;
+import bg.softuni.vetclinic.model.entities.UserRoleEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
@@ -11,6 +12,6 @@ public interface UserRepository extends JpaRepository<UserEntity, Long> {
 
     Optional<UserEntity> findByEmail(String email);
 
-    Optional<UserEntity> findByEmailAndRolesContains(String email, String role);
+    Optional<UserEntity> findByEmailAndRolesContains(String email, UserRoleEntity role);
 
 }

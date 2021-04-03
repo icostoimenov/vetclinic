@@ -83,6 +83,8 @@
 
                 <li><a class="nav-link" sec:authorize="!isAuthenticated()" th:href="@{/users/login}" >Login</a></li>
                 <li><a class="nav-link" sec:authorize="!isAuthenticated()" th:href="@{/users/register}">Register</a></li>
+
+                <span sec:authorize="isAuthenticated()" th:text ="${'Hello, ' + #authentication.getName()}"></span>
                 <li><form class="logout-btn-form" sec:authorize="isAuthenticated()" th:action="@{/logout}" method="post">
                     <input class="logout-btn" type="submit" value="Log out"/>
                 </form></li>
