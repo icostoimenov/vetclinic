@@ -48,9 +48,9 @@ public class UserServiceImpl implements UserService {
 
             userRoleRepository.saveAll(List.of(adminRole, doctorRole, userRole));
 
-            UserEntity admin = new UserEntity().setFullName("Admin Adminov").setEmail("admin@vet.bg").setPhoneNumber(555231345).setPassword(passwordEncoder.encode("123456"));
-            UserEntity doctor = new DoctorEntity().setSpecialization("psychologist").setFullName("Dr Dolittle").setEmail("thedoc@vet.bg").setPhoneNumber(33325870).setPassword(passwordEncoder.encode("123456"));
-            UserEntity user = new UserEntity().setFullName("Dummy User").setEmail("user@dummy.bg").setPhoneNumber(555875492).setPassword(passwordEncoder.encode("123456"));
+            UserEntity admin = new UserEntity().setFullName("Admin Adminov").setEmail("admin@vet.bg").setPhoneNumber(555231345L).setPassword(passwordEncoder.encode("123456"));
+            UserEntity doctor = new DoctorEntity().setSpecialization("psychologist").setFullName("Dr Dolittle").setEmail("thedoc@vet.bg").setPhoneNumber(33325870L).setPassword(passwordEncoder.encode("123456"));
+            UserEntity user = new UserEntity().setFullName("Dummy User").setEmail("user@dummy.bg").setPhoneNumber(555875492L).setPassword(passwordEncoder.encode("123456"));
 
 
             admin.setRoles(List.of(adminRole, doctorRole, userRole));
@@ -89,10 +89,10 @@ public class UserServiceImpl implements UserService {
 
         newDoctor = userRepository.save(newDoctor);
 
-        UserDetails principal = vetClinicUserService.loadUserByUsername(newDoctor.getEmail());
-        Authentication authentication = new UsernamePasswordAuthenticationToken(
-                principal, newDoctor.getPassword(), principal.getAuthorities());
-        SecurityContextHolder.getContext().setAuthentication(authentication);
+//        UserDetails principal = vetClinicUserService.loadUserByUsername(newDoctor.getEmail());
+//        Authentication authentication = new UsernamePasswordAuthenticationToken(
+//                principal, newDoctor.getPassword(), principal.getAuthorities());
+//        SecurityContextHolder.getContext().setAuthentication(authentication);
     }
 
     @Override

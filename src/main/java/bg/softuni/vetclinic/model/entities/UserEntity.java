@@ -13,7 +13,7 @@ public class UserEntity extends BaseEntity {
     private String email;
     private String fullName;
     private String password;
-    private int phoneNumber;
+    private Long phoneNumber;
     private Set<PetEntity> pets;
     private List<UserRoleEntity> roles = new ArrayList<>();
 
@@ -68,11 +68,11 @@ public class UserEntity extends BaseEntity {
     }
 
     @Column(nullable = false)
-    public int getPhoneNumber() {
+    public Long getPhoneNumber() {
         return phoneNumber;
     }
 
-    public UserEntity setPhoneNumber(int phoneNumber) {
+    public UserEntity setPhoneNumber(Long phoneNumber) {
         this.phoneNumber = phoneNumber;
         return this;
     }

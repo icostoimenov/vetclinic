@@ -10,7 +10,7 @@ public class DoctorRegistrationServiceModel {
     private String email;
     private String fullName;
     private String password;
-    private int phoneNumber;
+    private Long phoneNumber;
     private String specialization;
     private List<PetEntity> patients = new ArrayList<>();
 
@@ -42,11 +42,11 @@ public class DoctorRegistrationServiceModel {
         return this;
     }
 
-    public int getPhoneNumber() {
+    public Long getPhoneNumber() {
         return phoneNumber;
     }
 
-    public DoctorRegistrationServiceModel setPhoneNumber(int phoneNumber) {
+    public DoctorRegistrationServiceModel setPhoneNumber(Long phoneNumber) {
         this.phoneNumber = phoneNumber;
         return this;
     }

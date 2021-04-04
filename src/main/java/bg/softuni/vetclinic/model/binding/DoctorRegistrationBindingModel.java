@@ -15,7 +15,7 @@ public class DoctorRegistrationBindingModel {
     private String password;
     private String confirmPassword;
     private String specialization;
-    private int phoneNumber;
+    private Long phoneNumber;
     private List<PetEntity> patients = new ArrayList<>();
 
 
@@ -65,11 +65,11 @@ public class DoctorRegistrationBindingModel {
 
     @NotNull
     @Min(6)
-    public int getPhoneNumber() {
+    public Long getPhoneNumber() {
         return phoneNumber;
     }
 
-    public DoctorRegistrationBindingModel setPhoneNumber(int phoneNumber) {
+    public DoctorRegistrationBindingModel setPhoneNumber(Long phoneNumber) {
         this.phoneNumber = phoneNumber;
         return this;
     }

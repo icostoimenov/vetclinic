@@ -1,0 +1,25 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head th:insert="fragments/commons :: head">
+
+</head>
+
+<body class="img js-fullheight" >
+
+<header id="header" class="fixed-top" th:replace="fragments/commons :: header"></header>
+
+<section style="    text-align: center;
+    font-size: 25px;" class="ftco-section">
+    <h1 class="error-heading">OH NO!</h1>
+     It seems you are trying to access a page you are not supposed to look at.<br>
+    <a class="error-home-link" th:href="@{/home}">Please head back.</a>
+
+</section>
+
+<footer th:replace="fragments/commons :: footer"></footer>
+
+
+</body>
+</html>
+

@@ -5,7 +5,7 @@ public class UserRegistrationServiceModel {
     private String email;
     private String fullName;
     private String password;
-    private int phoneNumber;
+    private Long phoneNumber;
 
 
     public String getEmail() {
@@ -35,11 +35,11 @@ public class UserRegistrationServiceModel {
         return this;
     }
 
-    public int getPhoneNumber() {
+    public Long getPhoneNumber() {
         return phoneNumber;
     }
 
-    public UserRegistrationServiceModel setPhoneNumber(int phoneNumber) {
+    public UserRegistrationServiceModel setPhoneNumber(Long phoneNumber) {
         this.phoneNumber = phoneNumber;
         return this;
     }

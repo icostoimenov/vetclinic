@@ -13,7 +13,7 @@ public class UserRegistrationBindingModel {
     private String fullName;
     private String password;
     private String confirmPassword;
-    private int phoneNumber;
+    private Long phoneNumber;
 
 
     @NotEmpty
@@ -62,11 +62,11 @@ public class UserRegistrationBindingModel {
 
     @NotNull
     @Min(6)
-    public int getPhoneNumber() {
+    public Long getPhoneNumber() {
         return phoneNumber;
     }
 
-    public UserRegistrationBindingModel setPhoneNumber(int phoneNumber) {
+    public UserRegistrationBindingModel setPhoneNumber(Long phoneNumber) {
         this.phoneNumber = phoneNumber;
         return this;
     }

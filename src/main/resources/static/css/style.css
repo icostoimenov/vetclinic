@@ -13793,3 +13793,15 @@ h1 {
     border: 1px solid;
     border-radius: 8px;
 }
+
+.error-heading{
+    color: black;
+    text-shadow: none;
+    font-size: 40px;
+    font-weight: 500;
+}
+
+.error-home-link{
+    color: #0a58ca;
+
+}
