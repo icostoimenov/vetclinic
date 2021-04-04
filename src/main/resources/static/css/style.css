@@ -2231,8 +2231,8 @@ mark,
     content: "\2014\00A0";
 }
 
-.img-fluid {
-    max-width: 100%;
+.nav-logo {
+    max-width: 10%;
     height: auto;
 }
 
@@ -6353,7 +6353,6 @@ input[type="button"].btn-block {
 }
 
 .navbar {
-    position: relative;
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;

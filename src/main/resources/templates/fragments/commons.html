@@ -15,6 +15,9 @@
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i"
           rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" rel="stylesheet">
 
     <!-- Vendor CSS Files -->
     <link href="/vendor/animate.css/animate.min.css" rel="stylesheet">
@@ -26,36 +29,35 @@
     <link href="/vendor/remixicon/remixicon.css" rel="stylesheet">
     <link href="/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
 
+    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="vendor/glightbox/js/glightbox.min.js"></script>
+    <script src="vendor/php-email-form/validate.js"></script>
+    <script src="vendor/purecounter/purecounter.js"></script>
+    <script src="vendor/swiper/swiper-bundle.min.js"></script>
+
+
+
+
+
     <!-- Template Main CSS File -->
     <link href="/css/style.css" rel="stylesheet">
 
-    <!--Login CSS-->
-    <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-    <!--    <link rel="stylesheet" href="/css/login.css">-->
 
-    <!--    Register CSS-->
-    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" rel="stylesheet">
-    <!--    <link rel="stylesheet" href="/css/register.css">-->
-
-    <!-- =======================================================
-    * Template Name: Medilab - v4.1.0
-    * Template URL: https://bootstrapmade.com/medilab-free-medical-bootstrap-theme/
-    * Author: BootstrapMade.com
-    * License: https://bootstrapmade.com/license/
-    ======================================================== -->
 </head>
 <body>
 <header th:fragment="header" id="header" class="fixed-top">
     <div class="container d-flex align-items-center">
-        <div class="head-logo"><img  class="img-fluid" alt=""></div>
+        <img src="/img/logo-small.jpg" class="nav-logo" alt="">
+        <div class="head-logo">
+
+        </div>
         <h1 class="logo me-auto"><a href="/">Pawsome Vets</a></h1>
-        <!-- Uncomment below if you prefer to use an image logo -->
-        <!-- <a href="index.html" class="logo me-auto"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>-->
+
 
         <nav id="navbar" class="navbar order-last order-lg-0">
             <ul>
-                <li sec:authorize="hasRole('ROLE_ADMIN')" class="dropdown"><a href="#"><span>Admin Panel</span> <i class="bi bi-chevron-down"></i></a>
+                <li sec:authorize="hasRole('ROLE_ADMIN')" class="dropdown"><a href="#"><span>Admin Panel</span> <i
+                        class="bi bi-chevron-down"></i></a>
                     <ul>
                         <li><a th:href="@{/doctors/register}">Register a doctor</a></li>
                         <li class="dropdown"><a href="#"><span>Deep Drop Down</span> <i class="bi bi-chevron-right"></i></a>
@@ -81,13 +83,16 @@
                 <li><a class="nav-link " sec:authorize="isAuthenticated()" href="/pets/my-pets">My Pets</a></li>
 
 
-                <li><a class="nav-link" sec:authorize="!isAuthenticated()" th:href="@{/users/login}" >Login</a></li>
+                <li><a class="nav-link" sec:authorize="!isAuthenticated()" th:href="@{/users/login}">Login</a></li>
                 <li><a class="nav-link" sec:authorize="!isAuthenticated()" th:href="@{/users/register}">Register</a></li>
 
-                <span sec:authorize="isAuthenticated()" th:text ="${'Hello, ' + #authentication.getName()}"></span>
-                <li><form class="logout-btn-form" sec:authorize="isAuthenticated()" th:action="@{/logout}" method="post">
-                    <input class="logout-btn" type="submit" value="Log out"/>
-                </form></li>
+                <span sec:authorize="isAuthenticated()" th:text="${'Hello, ' + #authentication.getName()}"></span>
+                <li>
+                    <form class="logout-btn-form" sec:authorize="isAuthenticated()" th:action="@{/logout}"
+                          method="post">
+                        <input class="logout-btn" type="submit" value="Log out"/>
+                    </form>
+                </li>
             </ul>
             <i class="bi bi-list mobile-nav-toggle"></i>
         </nav><!-- .navbar -->
@@ -172,5 +177,6 @@
         </div>
     </div>
 </footer>
+<script src="/js/main.js"></script>
 </body>
 </html>
