@@ -1011,6 +1011,10 @@ section {
     width: 100%;
 }
 
+.php-email-form{
+    color: black;
+}
+
 .appointment .php-email-form .form-group {
     padding-bottom: 8px;
 }
@@ -3927,8 +3931,8 @@ pre code {
     font-size: 1rem;
     font-weight: 400;
     line-height: 1.5;
-    color: #495057;
-    background-color: #fff;
+    color: #000000;
+    background-color: #ffffff;
     background-clip: padding-box;
     border: 1px solid #ced4da;
     border-radius: 0.25rem;
@@ -13264,7 +13268,7 @@ h1, h2, h3, h4, h5,
     background: transparent;
     border: none;
     height: 50px;
-    color: white !important;
+    color: #000000;
     border: 1px solid transparent;
     background: rgba(255, 255, 255, 0.08);
     border-radius: 40px;
@@ -13457,9 +13461,9 @@ body {
     box-sizing: border-box;
     padding: 40px;
     width: 620px;
-    background-color: rgba(0, 0, 0, 0.7);
+    /*background-color: rgba(0, 0, 0, 0.7);*/
     border-radius: 70px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
+    /*box-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);*/
 }
 
 h1 {
@@ -13594,6 +13598,12 @@ button.social-signin.google {
     background-size: auto;
     background-image: linear-gradient(rgba(255, 255, 255, 0), rgba(255, 255, 255, 0)), url('../img/group-pets.jpeg');
     height: 1000px;
+}
+.doc-reg-div{
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-image: linear-gradient(rgba(255, 255, 255, 0), rgba(255, 255, 255, 0)), url(../img/dog+cat-withstetoscope.png);
+    height: 966px;
 }
 
 .alert-danger {

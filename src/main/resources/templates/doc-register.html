@@ -8,9 +8,9 @@
 <body>
 <header id="header" class="fixed-top" th:replace="fragments/commons :: header"></header>
 
-<section class="reg-sec" style="margin-top: 50px">
+<section class="reg-sec" style="margin-top: 50px; padding-top: 5px;">
 
-    <div class="reg-div">
+    <div class="doc-reg-div">
         <div id="register-box">
             <div class="left">
                 <form class="reg-form" th:action="@{/doctors/register}" th:object="${registrationBindingModel}"

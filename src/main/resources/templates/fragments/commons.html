@@ -60,15 +60,15 @@
                         class="bi bi-chevron-down"></i></a>
                     <ul>
                         <li><a th:href="@{/doctors/register}">Register a doctor</a></li>
-                        <li class="dropdown"><a href="#"><span>Deep Drop Down</span> <i class="bi bi-chevron-right"></i></a>
-                            <ul>
-                                <li><a href="#">Deep Drop Down 1</a></li>
-                                <li><a href="#">Deep Drop Down 2</a></li>
-                                <li><a href="#">Deep Drop Down 3</a></li>
-                                <li><a href="#">Deep Drop Down 4</a></li>
-                                <li><a href="#">Deep Drop Down 5</a></li>
-                            </ul>
-                        </li>
+<!--                        <li class="dropdown"><a href="#"><span>Deep Drop Down</span> <i class="bi bi-chevron-right"></i></a>-->
+<!--                            <ul>-->
+<!--                                <li><a href="#">Deep Drop Down 1</a></li>-->
+<!--                                <li><a href="#">Deep Drop Down 2</a></li>-->
+<!--                                <li><a href="#">Deep Drop Down 3</a></li>-->
+<!--                                <li><a href="#">Deep Drop Down 4</a></li>-->
+<!--                                <li><a href="#">Deep Drop Down 5</a></li>-->
+<!--                            </ul>-->
+<!--                        </li> -->
                         <li><a href="#">Drop Down 2</a></li>
                         <li><a href="#">Drop Down 3</a></li>
                         <li><a href="#">Drop Down 4</a></li>
@@ -97,7 +97,7 @@
             <i class="bi bi-list mobile-nav-toggle"></i>
         </nav><!-- .navbar -->
 
-        <a href="#appointment" class="appointment-btn scrollto"><span class="d-none d-md-inline">Make an</span>
+        <a th:href="@{/appointments/make}" class="appointment-btn "><span class="d-none d-md-inline">Make an</span>
             Appointment</a>
 
     </div>
