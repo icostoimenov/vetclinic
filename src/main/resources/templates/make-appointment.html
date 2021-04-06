@@ -34,7 +34,8 @@
 <!--            </div> -->
             <div class="row">
                 <div class="col-md-4 form-group mt-3">
-                    <input th:field="*{appointmentDate}" type="date" name="date" class="form-control datepicker" id="date" placeholder="Appointment Date" data-rule="minlen:4" data-msg="Please enter at least 4 chars">
+<!--                    <input th:field="*{appointmentDate}" type="date" name="date" class="form-control datepicker" id="date" placeholder="Appointment Date" data-rule="minlen:4" data-msg="Please enter at least 4 chars">-->
+                    <p>Date: <input type="text" th:field="*{appointmentDate}" id="datepicker" autocomplete="off"></p>
                     <small th:if="${#fields.hasErrors('appointmentDate')}" id="ageError"
                            class="invalid-feedback text-light form-text bg-danger rounded">Age cannot be negative number.</small>
                 </div>
@@ -52,19 +53,16 @@
                         <option th:each="d : ${doctors}" th:value="${d.id}" th:text="${d.fullName}" >Doctor 1</option>
 
                     </select>
-
                 </div>
+
             </div>
 
             <div class="form-group mt-3">
                 <textarea class="form-control" th:field="*{additionalInfo}" name="message" rows="5" placeholder="Message (Optional)"></textarea>
 
             </div>
-            <div class="mb-3">
-                <div class="loading">Loading</div>
-                <div class="error-message"></div>
-                <div class="sent-message">Your appointment request has been sent successfully. Thank you!</div>
-            </div>
+
+
             <div class="text-center"><button type="submit">Make an Appointment</button></div>
         </form>
 
@@ -72,7 +70,8 @@
 </section>
 
 <footer th:replace="fragments/commons :: footer"></footer>
+
 <script src="/js/main.js"> </script>
-<script src="/js/date-reservation.js"> </script>
+<script src="/js/date-remover.js"> </script>
 </body>
 </html>

@@ -9,7 +9,7 @@ import java.time.LocalDate;
 public class AppointmentAddBindingModel {
 
     private String additionalInfo;
-    private LocalDate appointmentDate;
+    private String appointmentDate;
     private Long petId;
     private Long docId;
 
@@ -43,13 +43,12 @@ public class AppointmentAddBindingModel {
     }
 
 
-    @DateTimeFormat(pattern = "yyyy-MM-dd")
-    @FutureOrPresent
-    public LocalDate getAppointmentDate() {
+    @NotEmpty
+    public String getAppointmentDate() {
         return appointmentDate;
     }
 
-    public AppointmentAddBindingModel setAppointmentDate(LocalDate appointmentDate) {
+    public AppointmentAddBindingModel setAppointmentDate(String appointmentDate) {
         this.appointmentDate = appointmentDate;
         return this;
     }

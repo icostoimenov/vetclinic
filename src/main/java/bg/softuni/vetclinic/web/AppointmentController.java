@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.validation.Valid;
+import java.text.ParseException;
 import java.util.List;
 
 @Controller
@@ -60,7 +61,7 @@ public class AppointmentController {
 
     @PostMapping("/make")
     public String makeAnAppointment(@Valid AppointmentAddBindingModel appointmentAddBindingModel, BindingResult bindingResult, RedirectAttributes redirectAttributes,
-                                    @AuthenticationPrincipal UserDetails principal, @RequestParam Long docId, @RequestParam Long petId) {
+                                    @AuthenticationPrincipal UserDetails principal, @RequestParam Long docId, @RequestParam Long petId)  {
 
         if (bindingResult.hasErrors()) {
             redirectAttributes.addFlashAttribute("appointmentAddBindingModel", appointmentAddBindingModel);

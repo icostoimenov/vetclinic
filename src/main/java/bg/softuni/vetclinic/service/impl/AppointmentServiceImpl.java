@@ -11,6 +11,11 @@ import org.modelmapper.ModelMapper;
 import org.modelmapper.convention.MatchingStrategies;
 import org.springframework.stereotype.Service;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+
 @Service
 public class AppointmentServiceImpl implements AppointmentService {
 
@@ -18,6 +23,7 @@ public class AppointmentServiceImpl implements AppointmentService {
     private final AppointmentRepository appointmentRepository;
     private final UserRepository userRepository;
     private final PetRepository petRepository;
+    private final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("M/dd/yyyy");
 
     public AppointmentServiceImpl(ModelMapper modelMapper, AppointmentRepository appointmentRepository, UserRepository userRepository, PetRepository petRepository) {
         this.modelMapper = modelMapper;
@@ -30,7 +36,9 @@ public class AppointmentServiceImpl implements AppointmentService {
     public void addAppointment(AppointmentServiceModel appointmentServiceModel) {
         modelMapper.getConfiguration().setMatchingStrategy(MatchingStrategies.STRICT);
         AppointmentEntity appointment = modelMapper.map(appointmentServiceModel, AppointmentEntity.class);
-        appointment.setAppointmentDate(appointmentServiceModel.getAppointmentDate());
+
+        LocalDate appDate = LocalDate.parse(appointmentServiceModel.getAppointmentDate(), formatter);
+        appointment.setAppointmentDate(appDate);
         appointment.setDoctor(userRepository.findDoctorById(appointmentServiceModel.getDoctorId())
                 .orElseThrow(IllegalArgumentException::new));
         appointment.setPet(petRepository.findById(appointmentServiceModel.getPetId()).orElseThrow(IllegalArgumentException::new));

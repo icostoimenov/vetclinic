@@ -6,7 +6,7 @@ public class AppointmentServiceModel {
 
     private String additionalInfo;
     private Long petId;
-    private LocalDate appointmentDate;
+    private String appointmentDate;
     private Long doctorId;
     private String creator;
 
@@ -21,11 +21,11 @@ public class AppointmentServiceModel {
     }
 
 
-    public LocalDate getAppointmentDate() {
+    public String getAppointmentDate() {
         return appointmentDate;
     }
 
-    public AppointmentServiceModel setAppointmentDate(LocalDate appointmentDate) {
+    public AppointmentServiceModel setAppointmentDate(String appointmentDate) {
         this.appointmentDate = appointmentDate;
         return this;
     }
