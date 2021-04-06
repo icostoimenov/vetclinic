@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head th:insert="fragments/commons :: head">
+
+</head>
+
+<body class="app-body" style="height: auto">
+
+
+<header id="header" class="fixed-top" th:replace="fragments/commons :: header"></header>
+
+
+    <section id="departments" class="departments" style="margin-top: 100px; background: url(../img/myapp-bg.jpg) no-repeat; background-size: cover">
+        <div class="container">
+
+            <div class="section-title">
+                <h2>My Appointments</h2>
+
+            </div>
+
+            <div class="row app" style="margin-bottom: 30px" th:each="ap, iterHelper : ${pendingAppointments}" >
+                <div class="col-lg-3">
+                    <ul class="nav nav-tabs flex-column">
+                        <li class="nav-item"  >
+                            <button class="nav-link active show app" th:data-id="${iterHelper.index}" onclick="hideDiv(this.getAttribute('data-id'))" th:text="*{ap.appointmentDate}"  data-bs-toggle="tab" >Cardiology </button>
+                        </li>
+
+                    </ul>
+                </div>
+                <div class="col-lg-9 mt-4 mt-lg-0"  th:id="'#tab-' + *{iterHelper.index}" style="display: none">
+                    <div class="tab-content" >
+                        <div class="tab-pane active " >
+                            <div class="row" >
+                                <div class="col-lg-8 details order-2 order-lg-1"  >
+                                    <h3 ><a class="tiptext" th:text="*{ap.pet.name}">text
+                                        <iframe src="http://localhost:8080/appointments/pending" class="petPreview"></iframe>Cardiology</a></h3>
+
+                                    <p th:text="'Owner name: ' + *{ap.ownerName}" class="fst-italic app"> marka</p>
+                                    <p th:text="'Owner email: ' + *{ap.ownerEmail}" class="fst-italic app"> marka</p>
+                                    <p th:text="'Owner phone: ' + *{ap.ownerPhone}" class="fst-italic app"> marka</p>
+                                    <p th:text="*{ap.additionalInfo}" style="padding-bottom: 23px;" class="info-app">c </p>
+
+                                </div>
+
+
+                            </div>
+                        </div>
+                        <div class="doc-comment">
+                            <form th:action="@{/appointments/diagnose/{id}(id = *{ap.id}, petId = *{ap.pet.id})}" th:method="PUT">
+
+                                <textarea name="diagnose" id="diagnose-text" cols="10" rows="5"></textarea>
+                                <button type="submit" class="nav-link active show app" style="border-right: 0; color: black" >Diagnose</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+    </section>
+
+
+<footer th:replace="fragments/commons :: footer"></footer>
+
+<script src="/js/login/jquery.min.js"></script>
+<script src="/js/login/popper.js"></script>
+<script src="/js/login/bootstrap.min.js"></script>
+<script src="/js/login/main.js"></script>
+<script src="/js/main.js"> </script>
+
+<script type="text/javascript" th:inline="javascript">
+    function hideDiv(id) {
+
+
+        var x = document.getElementById("#tab-" + id);
+        if (x.style.display === "none") {
+            x.style.display = "block";
+        } else {
+            x.style.display = "none";
+        }
+    }
+</script>
+<script>
+    $(".tiptext").mouseover(function() {
+        $(this).children(".petPreview").show();
+    }).mouseout(function() {
+        $(this).children(".petPreview").hide();
+    });
+</script>
+
+</body>
+</html>

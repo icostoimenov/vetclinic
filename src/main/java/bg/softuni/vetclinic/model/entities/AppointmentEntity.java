@@ -18,6 +18,7 @@ public class AppointmentEntity extends BaseEntity{
     private DoctorEntity doctor;
     private UserEntity creator;
     private AppointmentStatus status;
+    private String doctorCommentary;
 
 
     public String getOwnerName() {
@@ -105,6 +106,15 @@ public class AppointmentEntity extends BaseEntity{
 
     public AppointmentEntity setStatus(AppointmentStatus status) {
         this.status = status;
+        return this;
+    }
+
+    public String getDoctorCommentary() {
+        return doctorCommentary;
+    }
+
+    public AppointmentEntity setDoctorCommentary(String doctorCommentary) {
+        this.doctorCommentary = doctorCommentary;
         return this;
     }
 }

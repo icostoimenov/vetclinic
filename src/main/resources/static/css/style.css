@@ -6358,6 +6358,9 @@ input[type="button"].btn-block {
 .tab-content > .active {
     display: block;
 }
+.tab-content{
+    display: flex;
+}
 
 .navbar {
     display: -webkit-box;
@@ -13457,6 +13460,10 @@ body {
     border-radius: 70px;
     /*box-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);*/
 }
+.reg-body{
+    position: relative;
+    top: -70px;
+}
 
 .left {
     top: 0;
@@ -13836,4 +13843,49 @@ h1 {
 }
 .app-h2, .app-p{
     color: white !important;
+}
+
+.app-body{
+    height: auto !important;
+}
+
+.row{
+    width: 100%;
+}
+.tab-pane.active{
+    display: flex;
+    max-width: 550px;
+    flex-grow: 1;
+}
+
+.row.app {
+    background-color: rgba(255, 255, 255, 0.6);
+    backdrop-filter: blur(5px);
+
+}
+.fst-italic.app, .info-app{
+    color: black !important;
+}
+.nav-link.active.show.app{
+    background: #c5c5ff;
+    border-radius: 58px;
+    padding: 8px;
+    margin: 10px;
+}
+.doc-comment{
+    display: flex;
+    flex-direction: column;
+    width: 40%;
+    justify-content: space-evenly;
+}
+.tiptext {
+    color:#069;
+    cursor:pointer;
+}
+.petPreview {
+    display:none;
+    position:absolute;
+    border:1px solid #000;
+    width:400px;
+    height:400px;
 }

@@ -10,6 +10,7 @@ public class PetViewModel {
     private PetType type;
     private String imageUrl;
 
+
     public String getName() {
         return name;
     }

@@ -1,12 +1,14 @@
 package bg.softuni.vetclinic.web;
 
 import bg.softuni.vetclinic.model.binding.AppointmentAddBindingModel;
+import bg.softuni.vetclinic.model.entities.AppointmentEntity;
 import bg.softuni.vetclinic.model.entities.PetEntity;
 import bg.softuni.vetclinic.model.entities.UserEntity;
+import bg.softuni.vetclinic.model.entities.enums.AppointmentStatus;
 import bg.softuni.vetclinic.model.service.AppointmentServiceModel;
 import bg.softuni.vetclinic.repositories.PetRepository;
-import bg.softuni.vetclinic.repositories.UserRepository;
 import bg.softuni.vetclinic.service.AppointmentService;
+import bg.softuni.vetclinic.service.PetService;
 import bg.softuni.vetclinic.service.UserService;
 import org.modelmapper.ModelMapper;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
@@ -26,17 +28,17 @@ import java.util.List;
 public class AppointmentController {
 
     private final UserService userService;
-    private final PetRepository petRepository;
-    private final UserRepository userRepository;
     private final ModelMapper modelMapper;
     private final AppointmentService appointmentService;
+    private final PetRepository petRepository;
+    private final PetService petService;
 
-    public AppointmentController(UserService userService, PetRepository petRepository, UserRepository userRepository, ModelMapper modelMapper, AppointmentService appointmentService) {
+    public AppointmentController(UserService userService, ModelMapper modelMapper, AppointmentService appointmentService, PetRepository petRepository, PetService petService) {
         this.userService = userService;
-        this.petRepository = petRepository;
-        this.userRepository = userRepository;
         this.modelMapper = modelMapper;
         this.appointmentService = appointmentService;
+        this.petRepository = petRepository;
+        this.petService = petService;
     }
 
     @ModelAttribute("appointmentAddBindingModel")
@@ -51,15 +53,15 @@ public class AppointmentController {
 
         model.addAttribute("currentUser", currentUser);
         model.addAttribute("pets", pets);
-        model.addAttribute("doctors", userRepository.findDoctorsOnly());
+        model.addAttribute("doctors", userService.findDoctorsOnly());
         return "make-appointment";
     }
 
     @PostMapping("/make")
     public String makeAnAppointment(@Valid AppointmentAddBindingModel appointmentAddBindingModel, BindingResult bindingResult, RedirectAttributes redirectAttributes,
-                                    @AuthenticationPrincipal UserDetails principal, @RequestParam Long docId, @RequestParam Long petId) {
+                                    @AuthenticationPrincipal UserDetails principal, @RequestParam(required = false) Long docId, @RequestParam(required = false) Long petId) {
 
-        if (bindingResult.hasErrors()) {
+        if (bindingResult.hasErrors() || docId == null || petId == null) {
             redirectAttributes.addFlashAttribute("appointmentAddBindingModel", appointmentAddBindingModel);
             redirectAttributes.addFlashAttribute("org.springframework.validation.BindingResult.appointmentAddBindingModel", bindingResult);
 
@@ -71,13 +73,40 @@ public class AppointmentController {
         appointmentServiceModel.setDoctorId(docId);
         appointmentServiceModel.setPetId(petId);
 
-//        appointmentServiceModel.setAppointmentDate(appointmentAddBindingModel.getAppointmentDate());
+        //todo appointment error handling
 
         appointmentService.addAppointment(appointmentServiceModel);
 
         return "redirect:/home";
 
     }
+
+    @GetMapping("/pending")
+    public String pendingApps(@AuthenticationPrincipal UserDetails principal, Model model){
+        UserEntity currentUser = userService.findByEmail(principal.getUsername());
+        List<AppointmentEntity> pendingApps = appointmentService.allActiveAppsForDoctor(currentUser, AppointmentStatus.PENDING);
+        model.addAttribute("pendingAppointments", pendingApps);
+
+        return "appointments";
+    }
+
+    @PutMapping("/diagnose/{id}")
+    public String diagnosePatient(@PathVariable Long id, @RequestParam("petId") Long petId, @RequestParam("diagnose") String diagnose, RedirectAttributes redirectAttributes){
+        AppointmentStatus status = AppointmentStatus.FINISHED;
+
+        appointmentService.setDiagnose(diagnose, status, id);
+        petService.addMedicalHistory(petId, diagnose);
+
+        return "redirect:/appointments/pending";
+    }
+
+//    @GetMapping("/diagnose/*")
+//    public String diagnoseRedirect(){
+//        return "redirect:/appointments/pending";
+//    }
+
+
+
 
 
 }

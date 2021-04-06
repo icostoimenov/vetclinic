@@ -14,6 +14,6 @@ $('input').datepicker({
     beforeShowDay: function(date){
         let string = jQuery.datepicker.formatDate('yy-mm-dd', date);
         return [ usedDates.indexOf(string) === -1 ]
-    }
+    },
+    minDate: 0
 });
-

@@ -5,6 +5,7 @@ import bg.softuni.vetclinic.model.entities.enums.PetType;
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 @Entity
 @Table(name = "pets")
@@ -16,7 +17,7 @@ public class PetEntity extends BaseEntity {
     private PetType type;
     private String imageUrl;
     private UserEntity owner;
-    private List<String> diagnoses = new ArrayList<>();
+    private Set<String> medicalHistory;
 
     @Column(nullable = false)
     public String getName() {
@@ -70,13 +71,13 @@ public class PetEntity extends BaseEntity {
     }
 
 
-    @ElementCollection
-    public List<String> getDiagnoses() {
-        return diagnoses;
+    @ElementCollection(fetch = FetchType.EAGER)
+    public Set<String> getMedicalHistory() {
+        return medicalHistory;
     }
 
-    public PetEntity setDiagnoses(List<String> diagnoses) {
-        this.diagnoses = diagnoses;
+    public PetEntity setMedicalHistory(Set<String> diagnoses) {
+        this.medicalHistory = diagnoses;
         return this;
     }
 

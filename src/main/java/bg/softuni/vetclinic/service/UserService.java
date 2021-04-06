@@ -4,6 +4,8 @@ import bg.softuni.vetclinic.model.entities.UserEntity;
 import bg.softuni.vetclinic.model.service.DoctorRegistrationServiceModel;
 import bg.softuni.vetclinic.model.service.UserRegistrationServiceModel;
 
+import java.util.List;
+
 public interface UserService {
 
     void seedUsers();
@@ -14,4 +16,6 @@ public interface UserService {
     boolean emailExists(String email);
 
     UserEntity findByEmail(String email);
+
+    List<UserEntity> findDoctorsOnly();
 }

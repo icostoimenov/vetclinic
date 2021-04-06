@@ -3,6 +3,7 @@ package bg.softuni.vetclinic.service.impl;
 import bg.softuni.vetclinic.model.entities.PetEntity;
 import bg.softuni.vetclinic.model.entities.UserEntity;
 import bg.softuni.vetclinic.model.service.PetServiceModel;
+import bg.softuni.vetclinic.model.view.PetViewModel;
 import bg.softuni.vetclinic.repositories.PetRepository;
 import bg.softuni.vetclinic.repositories.UserRepository;
 import bg.softuni.vetclinic.service.CloudinaryService;
@@ -13,12 +14,15 @@ import org.springframework.mock.web.MockMultipartFile;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
+import javax.transaction.Transactional;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
+@Transactional
 public class PetServiceImpl implements PetService {
 
     private final PetRepository petRepository;
@@ -53,8 +57,14 @@ public class PetServiceImpl implements PetService {
     }
 
     @Override
-    public List<PetEntity> findPetsByOwner(UserEntity owner) {
-        return petRepository.findAllByOwner(owner);
+    public List<PetViewModel> findPetsByOwner(UserEntity owner) {
+        return petRepository.findAllByOwner(owner).stream().map(pe -> modelMapper.map(pe, PetViewModel.class)).collect(Collectors.toList());
+    }
+
+    @Override
+    public void addMedicalHistory(Long petId, String diagnose) {
+       PetEntity pet = petRepository.findById(petId).orElseThrow(IllegalArgumentException::new);
+       pet.getMedicalHistory().add(diagnose);
     }
 
     private void setDefaultImage(PetServiceModel petServiceModel) throws IOException {

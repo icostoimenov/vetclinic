@@ -1,10 +1,7 @@
 package bg.softuni.vetclinic.model.binding;
 
-import org.springframework.format.annotation.DateTimeFormat;
-
-import javax.validation.constraints.FutureOrPresent;
 import javax.validation.constraints.NotEmpty;
-import java.time.LocalDate;
+import javax.validation.constraints.NotNull;
 
 public class AppointmentAddBindingModel {
 
@@ -13,6 +10,7 @@ public class AppointmentAddBindingModel {
     private Long petId;
     private Long docId;
 
+    @NotNull
     public Long getPetId() {
         return petId;
     }
@@ -22,6 +20,7 @@ public class AppointmentAddBindingModel {
         return this;
     }
 
+    @NotNull
     public Long getDocId() {
         return docId;
     }

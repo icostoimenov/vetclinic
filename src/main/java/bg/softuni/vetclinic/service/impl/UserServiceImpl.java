@@ -103,7 +103,12 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public UserEntity findByEmail(String email) {
-
         return userRepository.findByEmail(email).orElseThrow(IllegalArgumentException::new);
+    }
+
+    @Override
+    public List<UserEntity> findDoctorsOnly() {
+
+        return userRepository.findDoctorsOnly();
     }
 }

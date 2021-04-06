@@ -12,9 +12,13 @@ import org.modelmapper.ModelMapper;
 import org.modelmapper.convention.MatchingStrategies;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
+import java.util.List;
 
+@Transactional
 @Service
 public class AppointmentServiceImpl implements AppointmentService {
 
@@ -50,4 +54,16 @@ public class AppointmentServiceImpl implements AppointmentService {
 
         appointmentRepository.save(appointment);
     }
+
+    @Override
+    public List<AppointmentEntity> allActiveAppsForDoctor(UserEntity doctorEntity, AppointmentStatus appointmentStatus) {
+        return new ArrayList<>(appointmentRepository.findAllByDoctorAndStatusLikeOrderByAppointmentDateAsc(doctorEntity, appointmentStatus));
+    }
+
+    @Override
+    public void setDiagnose(String diagnose, AppointmentStatus appointmentStatus, Long appId) {
+        appointmentRepository.updateAppDiagnoseAndStatus(diagnose, appointmentStatus, appId);
+    }
+
+
 }
