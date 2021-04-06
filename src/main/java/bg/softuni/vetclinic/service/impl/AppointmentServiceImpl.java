@@ -2,6 +2,7 @@ package bg.softuni.vetclinic.service.impl;
 
 import bg.softuni.vetclinic.model.entities.AppointmentEntity;
 import bg.softuni.vetclinic.model.entities.UserEntity;
+import bg.softuni.vetclinic.model.entities.enums.AppointmentStatus;
 import bg.softuni.vetclinic.model.service.AppointmentServiceModel;
 import bg.softuni.vetclinic.repositories.AppointmentRepository;
 import bg.softuni.vetclinic.repositories.PetRepository;
@@ -11,8 +12,6 @@ import org.modelmapper.ModelMapper;
 import org.modelmapper.convention.MatchingStrategies;
 import org.springframework.stereotype.Service;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
@@ -47,6 +46,7 @@ public class AppointmentServiceImpl implements AppointmentService {
                 .orElseThrow(() -> new IllegalArgumentException("Creator" + appointment.getOwnerEmail() + " could not be found"));
         appointment.setCreator(creator);
         appointment.setOwnerName(creator.getFullName()).setOwnerEmail(creator.getEmail()).setOwnerPhone(creator.getPhoneNumber());
+        appointment.setStatus(AppointmentStatus.PENDING);
 
         appointmentRepository.save(appointment);
     }

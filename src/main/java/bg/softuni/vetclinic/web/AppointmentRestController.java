@@ -1,5 +1,6 @@
 package bg.softuni.vetclinic.web;
 
+import bg.softuni.vetclinic.model.entities.enums.AppointmentStatus;
 import bg.softuni.vetclinic.repositories.AppointmentRepository;
 import org.modelmapper.ModelMapper;
 import org.springframework.http.ResponseEntity;
@@ -22,8 +23,8 @@ public class AppointmentRestController {
     }
 
     @GetMapping("/api")
-    public ResponseEntity<List<String>> findAllAppointmentDates(){
-        List<String> dates = appointmentRepository.findAll().stream().map(ae -> ae.getAppointmentDate().toString()).collect(Collectors.toList());
+    public ResponseEntity<List<String>> findAllPendingAppointmentDates(){
+        List<String> dates = appointmentRepository.findAllByStatusLike(AppointmentStatus.PENDING).stream().map(ae -> ae.getAppointmentDate().toString()).collect(Collectors.toList());
         return ResponseEntity.ok().body(dates);
     }
 }

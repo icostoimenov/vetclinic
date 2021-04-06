@@ -17,14 +17,3 @@ $('input').datepicker({
     }
 });
 
-// var array = ["2021-04-14 00:00:00","2015-06-15 00:00:00","2015-06-16 00:00:00", "2015-06-24 00:00:00", "2015-06-21 00:00:00"]
-// var trima = []
-// for (i = 0; i < array.length; i++ ) {
-//     trima.push(array[i].substring(10,""))
-// }
-// $('input').datepicker({
-//     beforeShowDay: function(date){
-//         var string = jQuery.datepicker.formatDate('yy-mm-dd', date);
-//         return [ trima.indexOf(string) === -1 ]
-//     }
-// });

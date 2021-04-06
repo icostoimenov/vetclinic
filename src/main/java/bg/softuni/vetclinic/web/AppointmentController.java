@@ -6,7 +6,6 @@ import bg.softuni.vetclinic.model.entities.UserEntity;
 import bg.softuni.vetclinic.model.service.AppointmentServiceModel;
 import bg.softuni.vetclinic.repositories.PetRepository;
 import bg.softuni.vetclinic.repositories.UserRepository;
-import bg.softuni.vetclinic.repositories.UserRoleRepository;
 import bg.softuni.vetclinic.service.AppointmentService;
 import bg.softuni.vetclinic.service.UserService;
 import org.modelmapper.ModelMapper;
@@ -19,7 +18,6 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.validation.Valid;
-import java.text.ParseException;
 import java.util.List;
 
 @Controller
@@ -30,15 +28,13 @@ public class AppointmentController {
     private final UserService userService;
     private final PetRepository petRepository;
     private final UserRepository userRepository;
-    private final UserRoleRepository userRoleRepository;
     private final ModelMapper modelMapper;
     private final AppointmentService appointmentService;
 
-    public AppointmentController(UserService userService, PetRepository petRepository, UserRepository userRepository, UserRoleRepository userRoleRepository, ModelMapper modelMapper, AppointmentService appointmentService) {
+    public AppointmentController(UserService userService, PetRepository petRepository, UserRepository userRepository, ModelMapper modelMapper, AppointmentService appointmentService) {
         this.userService = userService;
         this.petRepository = petRepository;
         this.userRepository = userRepository;
-        this.userRoleRepository = userRoleRepository;
         this.modelMapper = modelMapper;
         this.appointmentService = appointmentService;
     }
@@ -61,7 +57,7 @@ public class AppointmentController {
 
     @PostMapping("/make")
     public String makeAnAppointment(@Valid AppointmentAddBindingModel appointmentAddBindingModel, BindingResult bindingResult, RedirectAttributes redirectAttributes,
-                                    @AuthenticationPrincipal UserDetails principal, @RequestParam Long docId, @RequestParam Long petId)  {
+                                    @AuthenticationPrincipal UserDetails principal, @RequestParam Long docId, @RequestParam Long petId) {
 
         if (bindingResult.hasErrors()) {
             redirectAttributes.addFlashAttribute("appointmentAddBindingModel", appointmentAddBindingModel);

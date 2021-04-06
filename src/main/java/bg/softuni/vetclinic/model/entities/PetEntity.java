@@ -49,6 +49,7 @@ public class PetEntity extends BaseEntity {
     }
 
     @Column(nullable = false)
+    @Enumerated(EnumType.ORDINAL)
     public PetType getType() {
         return type;
     }

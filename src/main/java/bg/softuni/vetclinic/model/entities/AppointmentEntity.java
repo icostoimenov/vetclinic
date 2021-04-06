@@ -1,11 +1,9 @@
 package bg.softuni.vetclinic.model.entities;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.ManyToOne;
-import javax.persistence.Table;
+import bg.softuni.vetclinic.model.entities.enums.AppointmentStatus;
+
+import javax.persistence.*;
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "appointments")
@@ -19,6 +17,8 @@ public class AppointmentEntity extends BaseEntity{
     private LocalDate appointmentDate;
     private DoctorEntity doctor;
     private UserEntity creator;
+    private AppointmentStatus status;
+
 
     public String getOwnerName() {
         return ownerName;
@@ -95,6 +95,16 @@ public class AppointmentEntity extends BaseEntity{
 
     public AppointmentEntity setAppointmentDate(LocalDate appointmentDate) {
         this.appointmentDate = appointmentDate;
+        return this;
+    }
+
+    @Enumerated(EnumType.STRING)
+    public AppointmentStatus getStatus() {
+        return status;
+    }
+
+    public AppointmentEntity setStatus(AppointmentStatus status) {
+        this.status = status;
         return this;
     }
 }

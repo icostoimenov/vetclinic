@@ -1014,6 +1014,9 @@ section {
 .php-email-form{
     color: black;
 }
+.php-email-form p{
+    color: white;
+}
 
 .appointment .php-email-form .form-group {
     padding-bottom: 8px;
@@ -13450,9 +13453,9 @@ body {
     top: 67px;
     margin: 5% auto;
     width: 620px;
-    background-color: rgba(0, 0, 0, 0.5);
+    /*background-color: rgba(0, 0, 0, 0.5);*/
     border-radius: 70px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
+    /*box-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);*/
 }
 
 .left {
@@ -13461,7 +13464,7 @@ body {
     box-sizing: border-box;
     padding: 40px;
     width: 620px;
-    /*background-color: rgba(0, 0, 0, 0.7);*/
+    background-color: rgba(0, 0, 0, 0.7);
     border-radius: 70px;
     /*box-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);*/
 }
@@ -13479,8 +13482,8 @@ input[type="password"], input[type = "email"], input[type = "number"] {
     padding: 4px;
     width: 220px;
     height: 32px;
-    border: none;
-    border-bottom: 1px solid #AAA;
+    /*border: none;*/
+    /*border-bottom: 1px solid #AAA;*/
     font-family: 'Roboto', sans-serif;
     font-weight: 400;
     font-size: 15px;
@@ -13593,7 +13596,7 @@ button.social-signin.google {
     background: #DD4B39;
 }
 
-.reg-div {
+.reg-sec {
     background-repeat: no-repeat;
     background-size: auto;
     background-image: linear-gradient(rgba(255, 255, 255, 0), rgba(255, 255, 255, 0)), url('../img/group-pets.jpeg');
@@ -13815,4 +13818,22 @@ h1 {
 
 }
 
+.app-date {
+    margin-top: 14px;
+    border: solid 1px black; !important;
+}
 
+.appointment {
+    background: none;
+}
+.container.appointment{
+    background: rgba(0, 0, 0, 0.4);
+    border-radius: 50px;
+}
+.form-control.appointment{
+    background: white;
+    color: black;
+}
+.app-h2, .app-p{
+    color: white !important;
+}
