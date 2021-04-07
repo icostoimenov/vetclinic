@@ -63,8 +63,13 @@ public class PetServiceImpl implements PetService {
 
     @Override
     public void addMedicalHistory(Long petId, String diagnose) {
-       PetEntity pet = petRepository.findById(petId).orElseThrow(IllegalArgumentException::new);
-       pet.getMedicalHistory().add(diagnose);
+        PetEntity pet = petRepository.findById(petId).orElseThrow(IllegalArgumentException::new);
+        pet.getMedicalHistory().add(diagnose);
+    }
+
+    @Override
+    public PetEntity findById(Long id) {
+        return petRepository.findById(id).orElseThrow(IllegalArgumentException::new);
     }
 
     private void setDefaultImage(PetServiceModel petServiceModel) throws IOException {

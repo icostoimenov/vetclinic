@@ -84,7 +84,7 @@
                 <li><a class="nav-link scrollto" href="#doctors">Doctors</a></li>
                 <li><a class="nav-link scrollto" href="#contact">Contact</a></li>
                 <li><a class="nav-link " sec:authorize="isAuthenticated()" href="/pets/my-pets">My Pets</a></li>
-                <li><a class="nav-link " sec:authorize="hasRole('ROLE_DOCTOR')" href="/appointments/pending">My Appointments</a></li>
+                <li><a class="nav-link " sec:authorize="hasRole('ROLE_DOCTOR') && !hasRole('ROLE_ADMIN')" href="/appointments/pending">My Appointments</a></li>
 
 
                 <li><a class="nav-link" sec:authorize="!isAuthenticated()" th:href="@{/users/login}">Login</a></li>

@@ -13,4 +13,6 @@ public interface PetService {
     List<PetViewModel> findPetsByOwner(UserEntity owner);
 
     void addMedicalHistory(Long petId, String diagnose);
+
+    PetEntity findById(Long id);
 }

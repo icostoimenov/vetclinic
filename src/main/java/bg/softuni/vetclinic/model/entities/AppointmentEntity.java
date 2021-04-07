@@ -48,7 +48,7 @@ public class AppointmentEntity extends BaseEntity{
         return this;
     }
 
-    @Column(name = "additional_info")
+    @Column(name = "additional_info", length = 1000)
     public String getAdditionalInfo() {
         return additionalInfo;
     }

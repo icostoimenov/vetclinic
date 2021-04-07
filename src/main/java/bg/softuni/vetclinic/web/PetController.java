@@ -1,11 +1,18 @@
 package bg.softuni.vetclinic.web;
 
 import bg.softuni.vetclinic.model.binding.PetAddBindingModel;
+import bg.softuni.vetclinic.model.entities.PetEntity;
 import bg.softuni.vetclinic.model.entities.UserEntity;
 import bg.softuni.vetclinic.model.service.PetServiceModel;
+import bg.softuni.vetclinic.service.CSVService;
 import bg.softuni.vetclinic.service.PetService;
 import bg.softuni.vetclinic.service.UserService;
 import org.modelmapper.ModelMapper;
+import org.springframework.core.io.InputStreamResource;
+import org.springframework.core.io.Resource;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
@@ -24,11 +31,13 @@ public class PetController {
     private final ModelMapper modelMapper;
     private final PetService petService;
     private final UserService userService;
+    private final CSVService csvService;
 
-    public PetController(ModelMapper modelMapper, PetService petService, UserService userService) {
+    public PetController(ModelMapper modelMapper, PetService petService, UserService userService, CSVService csvService) {
         this.modelMapper = modelMapper;
         this.petService = petService;
         this.userService = userService;
+        this.csvService = csvService;
     }
 
     @ModelAttribute("petAddBindingModel")
@@ -71,9 +80,15 @@ public class PetController {
     }
 
     @GetMapping("/{id}")
-    public String petPreview(@PathVariable Long id){
+    public ResponseEntity<Resource> getMedicalHistory(@PathVariable Long id) {
+        PetEntity petEntity = petService.findById(id);
+        String fileName = petEntity.getName() + ".csv";
+        InputStreamResource file = new InputStreamResource(csvService.exportMedicalHistory(id));
 
-        return "inner-page";
+        return ResponseEntity.ok()
+                .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=" + fileName)
+                .contentType(MediaType.parseMediaType("application/csv"))
+                .body(file);
     }
 
 

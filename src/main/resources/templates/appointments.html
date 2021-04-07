@@ -33,8 +33,7 @@
                         <div class="tab-pane active " >
                             <div class="row" >
                                 <div class="col-lg-8 details order-2 order-lg-1"  >
-                                    <h3 ><a class="tiptext" th:text="*{ap.pet.name}">text
-                                        <iframe src="http://localhost:8080/appointments/pending" class="petPreview"></iframe>Cardiology</a></h3>
+                                    <h3 ><a th:href="@{/pets/{id}(id=*{ap.id})}" class="tiptext" th:text="*{ap.pet.name}">Cardiology</a></h3>
 
                                     <p th:text="'Owner name: ' + *{ap.ownerName}" class="fst-italic app"> marka</p>
                                     <p th:text="'Owner email: ' + *{ap.ownerEmail}" class="fst-italic app"> marka</p>
