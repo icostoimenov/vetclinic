@@ -73,7 +73,6 @@ public class AppointmentController {
         appointmentServiceModel.setDoctorId(docId);
         appointmentServiceModel.setPetId(petId);
 
-        //todo appointment error handling
 
         appointmentService.addAppointment(appointmentServiceModel);
 
@@ -82,7 +81,7 @@ public class AppointmentController {
     }
 
     @GetMapping("/pending")
-    public String pendingApps(@AuthenticationPrincipal UserDetails principal, Model model){
+    public String pendingApps(@AuthenticationPrincipal UserDetails principal, Model model) {
         UserEntity currentUser = userService.findByEmail(principal.getUsername());
         List<AppointmentEntity> pendingApps = appointmentService.allActiveAppsForDoctor(currentUser, AppointmentStatus.PENDING);
         model.addAttribute("pendingAppointments", pendingApps);
@@ -91,7 +90,7 @@ public class AppointmentController {
     }
 
     @PutMapping("/diagnose/{id}")
-    public String diagnosePatient(@PathVariable Long id, @RequestParam("petId") Long petId, @RequestParam("diagnose") String diagnose, RedirectAttributes redirectAttributes){
+    public String diagnosePatient(@PathVariable Long id, @RequestParam("petId") Long petId, @RequestParam("diagnose") String diagnose, RedirectAttributes redirectAttributes) {
         AppointmentStatus status = AppointmentStatus.FINISHED;
 
         appointmentService.setDiagnose(diagnose, status, id);
@@ -99,14 +98,5 @@ public class AppointmentController {
 
         return "redirect:/appointments/pending";
     }
-
-//    @GetMapping("/diagnose/*")
-//    public String diagnoseRedirect(){
-//        return "redirect:/appointments/pending";
-//    }
-
-
-
-
 
 }

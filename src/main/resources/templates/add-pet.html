@@ -22,7 +22,7 @@
                    class="invalid-feedback text-light form-text bg-danger rounded">Age cannot be negative number.</small>
 
 
-            <select th:value="*{gender}" th:errorclass="is-invalid" name="gender" id="gender" >
+            <select th:value="*{gender}" th:errorclass="is-invalid" name="gender" id="gender" style="color: black !important;" >
                 <option value="" selected disabled hidden>Gender</option>
                 <option value="Male" >Male</option>
                 <option value="Female" >Female</option>
@@ -31,7 +31,7 @@
                    class="invalid-feedback text-light form-text bg-danger rounded">Please select pet gender.</small>
 
 
-            <select th:value="*{type}" th:errorclass="is-invalid" name="type" id="petType" >
+            <select th:value="*{type}" th:errorclass="is-invalid" name="type" id="petType" style="color: black !important;" >
                 <option value="" selected = "selected" disabled >Pet type</option>
                 <option th:each="pt : ${T(bg.softuni.vetclinic.model.entities.enums.PetType).values()}" th:value="${pt}" th:text="${pt}"
                         th:selected="${pt} == *{type}">First Type</option>

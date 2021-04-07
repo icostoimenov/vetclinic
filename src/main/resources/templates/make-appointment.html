@@ -21,24 +21,27 @@
 
             <div class="row">
                 <div class="col-md-4 form-group mt-3">
-                    <p>Date: <input type="text" th:field="*{appointmentDate}" id="datepicker" class="app-date" autocomplete="off" readonly="readonly"></p>
-                    <small th:if="${#fields.hasErrors('appointmentDate')}" id="ageError"
-                           class="invalid-feedback text-light form-text bg-danger rounded">Age cannot be negative number.</small>
+                    <p>Date: <input type="text" th:field="*{appointmentDate}" id="datepicker" class="app-date" autocomplete="off" readonly="readonly">
+                        <small th:if="${#fields.hasErrors('appointmentDate')}" id="ageError"
+                               class="invalid-feedback text-light form-text bg-danger rounded">Please select a date.</small></p>
+
                 </div>
                 <div class="col-md-4 form-group mt-3">
                    <p>Select your pet:<select th:name="petId" id="petId" class="form-select">
                         <option value="" selected = "selected" disabled>Select Pet</option>
                         <option th:each="p : ${pets}" th:value="${p.id}" th:text="${p.name}" >Pet 1</option>
-
-                    </select></p>
+                    </select>
+                       <small th:if="${#fields.hasErrors('petId')}" id="petError"
+                              class="invalid-feedback text-light form-text bg-danger rounded">Please select a pet.</small></p>
 
                 </div>
                 <div class="col-md-4 form-group mt-3">
                    <p>Select a doctor:<select th:name="docId" id="docId" class="form-select">
                         <option value="" selected = "selected" disabled>Select Doctor</option>
                         <option th:each="d : ${doctors}" th:value="${d.id}" th:text="${d.fullName}" >Doctor 1</option>
-
-                    </select></p>
+                    </select>
+                       <small th:if="${#fields.hasErrors('docId')}" id="docError"
+                              class="invalid-feedback text-light form-text bg-danger rounded">Please select a doctor.</small></p>
                 </div>
 
             </div>

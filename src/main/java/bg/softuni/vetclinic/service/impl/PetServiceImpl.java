@@ -72,6 +72,11 @@ public class PetServiceImpl implements PetService {
         return petRepository.findById(id).orElseThrow(IllegalArgumentException::new);
     }
 
+    @Override
+    public PetEntity findByNameAndOwner(String petName, String ownerEmail) {
+        return petRepository.findByNameAndOwner_Email(petName, ownerEmail).orElseThrow(IllegalArgumentException::new);
+    }
+
     private void setDefaultImage(PetServiceModel petServiceModel) throws IOException {
         File file;
         MultipartFile result;

@@ -15,4 +15,6 @@ public interface PetService {
     void addMedicalHistory(Long petId, String diagnose);
 
     PetEntity findById(Long id);
+
+    PetEntity findByNameAndOwner(String petName, String ownerEmail);
 }

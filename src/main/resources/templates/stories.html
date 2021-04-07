@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:insert="fragments/commons :: head">
+
+</head>
+
+<body>
+<!-- Page Loader -->
+
+<header id="header" class="fixed-top" th:replace="fragments/commons :: header"></header>
+
+<section style="margin-top: 50px;">
+    <div class="tm-hero d-flex justify-content-center align-items-center" data-parallax="scroll" data-image-src="../img/gallery/hero.jpg">
+    <form class="d-flex tm-search-form">
+        <input class="form-control tm-search-input" type="search" placeholder="Search" aria-label="Search">
+        <button class="btn btn-outline-success tm-search-btn" type="submit">
+            <i class="fas fa-search"></i>
+        </button>
+    </form>
+</div>
+
+    <div class="container-fluid tm-container-content tm-mt-60">
+        <div class="row mb-4">
+            <h2 class="col-6 tm-text-primary">
+                Latest Stories
+            </h2>
+
+        </div>
+        <div class="row tm-mb-90 tm-gallery">
+            <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6 col-12 mb-5" th:each="post: ${stories}" style="background-color: rgba(15, 15, 33, 0.5); border-radius: 20px;">
+                <figure class="effect-ming tm-video-item" style="border-radius: 20px;">
+                    <img th:src="*{post.imageUrl}" alt="Image" class="img-fluid">
+                    <figcaption class="d-flex align-items-center justify-content-center">
+                        <h2 th:text="*{post.title}" style="color: white; word-spacing: inherit;"></h2>
+                        <a th:href="@{/stories/{id} (id = *{post.id})}" th:method="PUT" style="color: white">Read more</a>
+                    </figcaption>
+                </figure>
+                <div class="d-flex justify-content-between tm-text-gray">
+                    <span th:text="*{post.getCreatedOn()}" style="color: white;" class="tm-text-gray-light"></span>
+                    <span th:text="*{post.views + ' views'}" style="color: white;"></span>
+                </div>
+            </div>
+
+        </div> <!-- row -->
+
+    </div> <!-- container-fluid, tm-container-content --></section>
+
+<footer th:replace="fragments/commons :: footer"></footer>
+
+<script src="../js/gallery/plugins.js"></script>
+<script>
+    $(window).on("load", function() {
+        $('body').addClass('loaded');
+    });
+</script>
+<script src="/js/main.js"> </script>
+</body>
+</html>

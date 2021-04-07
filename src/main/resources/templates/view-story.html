@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:insert="fragments/commons :: head">
+
+</head>
+
+<body>
+
+<header id="header" class="fixed-top" th:replace="fragments/commons :: header"></header>
+
+<section id="about" class="about" style="margin-top: 100px; background-color: #e3ffee;" >
+    <div class="container-fluid">
+
+        <div class="row">
+            <div class="col-xl-5 col-lg-6 video-box d-flex justify-content-center align-items-stretch position-relative" th:style="'background:url('+ ${story.imageUrl} +') center center no-repeat; background-size: contain;'">
+                <a th:href="${story.imageUrl}" class="storyImage"></a>
+            </div>
+
+            <div class="col-xl-7 col-lg-6 icon-boxes d-flex flex-column align-items-stretch justify-content-center py-5 px-lg-5">
+                <h3 th:text="${story.title}">est</h3>
+                <p th:text="${story.storyText}" style="color: black">aut</p>
+
+                <div class="icons-holder">
+                    <div class="icon-box" style="margin-left: 70px;">
+                    <div class="icon" style="width: 35px; height: 35px;"><i class="fas fa-user-edit" style="font-size: 20px"></i></div>
+                    <h4 class="title" th:text="'By: ' + ${story.author.getFullName()}" style="margin-left: 50px;">Lorem Ipsum</h4>
+                </div>
+
+                    <div class="icon-box" style="margin-left: 70px;">
+                        <div class="icon" style="width: 35px; height: 35px;"><i class="fas fa-table" style="font-size: 20px"></i></div>
+                        <h4 class="title" th:text="'Posted on: ' + ${story.createdOn}" style="margin-left: 50px;"></h4>
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+</section>
+
+<footer th:replace="fragments/commons :: footer"></footer>
+<script src="/js/main.js"> </script>
+</body>
+</html>
