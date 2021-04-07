@@ -41,7 +41,7 @@ public class StoryController {
 
     @GetMapping("/add")
     public String addStory() {
-        return "post-story";
+        return "add-story";
     }
 
     @PostMapping("/add")

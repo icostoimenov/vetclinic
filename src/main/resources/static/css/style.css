@@ -14086,6 +14086,7 @@ a:hover { color:#009999; }
 .tm-hero {
     min-height: 200px;
     background: transparent;
+    flex-direction: column;
 }
 
 .tm-mt-60 { margin-top: 60px; }
