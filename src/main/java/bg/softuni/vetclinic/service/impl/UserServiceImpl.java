@@ -27,15 +27,14 @@ public class UserServiceImpl implements UserService {
     private final PasswordEncoder passwordEncoder;
     private final ModelMapper modelMapper;
     private final VetClinicUserService vetClinicUserService;
-    private final PasswordEncoder encoder;
 
-    public UserServiceImpl(UserRoleRepository userRoleRepository, UserRepository userRepository, PasswordEncoder passwordEncoder, ModelMapper modelMapper, VetClinicUserService vetClinicUserService, PasswordEncoder encoder) {
+    public UserServiceImpl(UserRoleRepository userRoleRepository, UserRepository userRepository, PasswordEncoder passwordEncoder,
+                           ModelMapper modelMapper, VetClinicUserService vetClinicUserService ) {
         this.userRoleRepository = userRoleRepository;
         this.userRepository = userRepository;
         this.passwordEncoder = passwordEncoder;
         this.modelMapper = modelMapper;
         this.vetClinicUserService = vetClinicUserService;
-        this.encoder = encoder;
     }
 
     @Override
@@ -87,12 +86,9 @@ public class UserServiceImpl implements UserService {
         newDoctor.addRole(docRole);
         newDoctor.addRole(userRole);
 
-        newDoctor = userRepository.save(newDoctor);
+        userRepository.save(newDoctor);
 
-//        UserDetails principal = vetClinicUserService.loadUserByUsername(newDoctor.getEmail());
-//        Authentication authentication = new UsernamePasswordAuthenticationToken(
-//                principal, newDoctor.getPassword(), principal.getAuthorities());
-//        SecurityContextHolder.getContext().setAuthentication(authentication);
+
     }
 
     @Override

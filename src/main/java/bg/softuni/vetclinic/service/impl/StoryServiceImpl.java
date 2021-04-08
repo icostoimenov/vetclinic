@@ -7,11 +7,15 @@ import bg.softuni.vetclinic.repositories.StoryRepository;
 import bg.softuni.vetclinic.repositories.UserRepository;
 import bg.softuni.vetclinic.service.CloudinaryService;
 import bg.softuni.vetclinic.service.StoryService;
+import org.apache.commons.io.IOUtils;
 import org.modelmapper.ModelMapper;
+import org.springframework.mock.web.MockMultipartFile;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.transaction.Transactional;
+import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
 import java.time.LocalDate;
 import java.util.List;
@@ -34,6 +38,12 @@ public class StoryServiceImpl implements StoryService {
 
     @Override
     public void postStory(StoryServiceModel storyServiceModel) throws IOException {
+
+        if (storyServiceModel.getImageUrl() == null || storyServiceModel.getImageUrl().isEmpty()) {
+            File file = new File("src/main/resources/static/img/defaults/default-story-img.jpg");
+            FileInputStream input = new FileInputStream(file);
+            storyServiceModel.setImageUrl(new MockMultipartFile("file", file.getName(), "image/png", IOUtils.toByteArray(input)));
+        }
         MultipartFile img = storyServiceModel.getImageUrl();
         String imageUrl = cloudinaryService.uploadImage(img);
 

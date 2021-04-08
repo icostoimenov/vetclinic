@@ -73,7 +73,6 @@ public class AppointmentController {
         appointmentServiceModel.setDoctorId(docId);
         appointmentServiceModel.setPetId(petId);
 
-
         appointmentService.addAppointment(appointmentServiceModel);
 
         return "redirect:/home";

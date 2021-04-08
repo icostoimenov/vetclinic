@@ -48,7 +48,7 @@ public class StoryController {
     public String addStory(@Valid StoryPostBindingModel storyPostBindingModel, BindingResult bindingResult,
                            RedirectAttributes redirectAttributes, @AuthenticationPrincipal UserDetails principal) throws IOException {
         if (bindingResult.hasErrors()) {
-            redirectAttributes.addFlashAttribute("petAddBindingModel", storyPostBindingModel);
+            redirectAttributes.addFlashAttribute("storyPostBindingModel", storyPostBindingModel);
             redirectAttributes.addFlashAttribute("org.springframework.validation.BindingResult.storyPostBindingModel", bindingResult);
 
             return "redirect:add";
@@ -62,11 +62,6 @@ public class StoryController {
         return "redirect:/stories/show";
     }
 
-//    @GetMapping("/{id}")
-//    public String readAStory(@PathVariable Long id, Model model) {
-//
-//
-//    }
 
     @GetMapping("/{id}")
     public String increaseViews(@PathVariable long id, Model model

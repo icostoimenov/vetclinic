@@ -2,6 +2,8 @@ package bg.softuni.vetclinic.model.view;
 
 import bg.softuni.vetclinic.model.entities.enums.AppointmentStatus;
 
+import javax.persistence.Column;
+
 public class AppointmentViewModel {
 
     private String ownerName;
@@ -41,6 +43,7 @@ public class AppointmentViewModel {
         return this;
     }
 
+    @Column()
     public String getAdditionalInfo() {
         return additionalInfo;
     }

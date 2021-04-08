@@ -16,7 +16,7 @@
             <h1>Share your story!</h1>
             <input  th:field="*{title}" type="text" id="input-title" name="title" placeholder="Title">
             <small th:if="${#fields.hasErrors('title')}" id="titleError"
-                   class="invalid-feedback text-light form-text bg-danger rounded">Pet name must be more than 3 characters.</small>
+                   class="invalid-feedback text-light form-text bg-danger rounded">Story title must be at least 10 characters.</small>
 
             <textarea th:field="*{storyText}" name="storyText" id="storyText" cols="30" rows="10" placeholder="Your Story"></textarea>
 

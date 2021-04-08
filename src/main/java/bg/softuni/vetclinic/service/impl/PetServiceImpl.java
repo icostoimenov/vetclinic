@@ -41,7 +41,7 @@ public class PetServiceImpl implements PetService {
 
     @Override
     public void addPet(PetServiceModel serviceModel) throws IOException {
-        if (serviceModel.getImageUrl().isEmpty()) {
+        if (serviceModel.getImageUrl() == null || serviceModel.getImageUrl().isEmpty()) {
             setDefaultImage(serviceModel);
         }
         MultipartFile img = serviceModel.getImageUrl();

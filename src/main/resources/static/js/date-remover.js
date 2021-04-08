@@ -6,7 +6,7 @@ let usedDates = []
 
 fetch("http://localhost:8080/appointments/api").then(response => response.json()).then(data => {
     for (let date of data) {
-        usedDates.push(date);
+        usedDates.push(date["appointmentDate"]);
     }
 })
 
