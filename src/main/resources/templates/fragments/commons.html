@@ -77,12 +77,12 @@
                         <li><a href="#">Drop Down 4</a></li>
                     </ul>
                 </li>
-                <li><a class="nav-link scrollto active" href="#hero">Home</a></li>
-                <li><a class="nav-link scrollto" href="#about">About</a></li>
-                <li><a class="nav-link scrollto" href="#services">Services</a></li>
+<!--                <li><a class="nav-link scrollto active" href="#hero">Home</a></li>-->
+<!--                <li><a class="nav-link scrollto" href="#about">About</a></li>-->
+<!--                <li><a class="nav-link scrollto" href="#services">Services</a></li>-->
                 <li><a class="nav-link scrollto" sec:authorize="isAuthenticated()" href="/stories/show">Stories</a></li>
-                <li><a class="nav-link scrollto" href="#doctors">Doctors</a></li>
-                <li><a class="nav-link scrollto" href="#contact">Contact</a></li>
+<!--                <li><a class="nav-link scrollto" href="#doctors">Doctors</a></li>-->
+<!--                <li><a class="nav-link scrollto" href="#contact">Contact</a></li>-->
                 <li><a class="nav-link " sec:authorize="isAuthenticated()" href="/pets/my-pets">My Pets</a></li>
                 <li><a class="nav-link " sec:authorize="hasRole('ROLE_DOCTOR') && !hasRole('ROLE_ADMIN')" href="/appointments/pending">My Appointments</a></li>
 
@@ -101,7 +101,7 @@
             <i class="bi bi-list mobile-nav-toggle"></i>
         </nav><!-- .navbar -->
 
-        <a th:href="@{/appointments/make}" class="appointment-btn "><span class="d-none d-md-inline">Make an</span>
+        <a th:href="@{/appointments/make}" sec:authorize="isAuthenticated()" class="appointment-btn "><span class="d-none d-md-inline">Make an</span>
             Appointment</a>
 
     </div>
