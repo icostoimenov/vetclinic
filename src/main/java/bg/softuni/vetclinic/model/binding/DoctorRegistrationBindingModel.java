@@ -2,6 +2,7 @@ package bg.softuni.vetclinic.model.binding;
 
 import bg.softuni.vetclinic.model.entities.PetEntity;
 import bg.softuni.vetclinic.validators.FieldMatch;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.validation.constraints.*;
 import java.util.ArrayList;
@@ -16,6 +17,7 @@ public class DoctorRegistrationBindingModel {
     private String confirmPassword;
     private String specialization;
     private Long phoneNumber;
+    private MultipartFile imageUrl;
     private List<PetEntity> patients = new ArrayList<>();
 
 
@@ -90,6 +92,15 @@ public class DoctorRegistrationBindingModel {
 
     public DoctorRegistrationBindingModel setPatients(List<PetEntity> patients) {
         this.patients = patients;
+        return this;
+    }
+
+    public MultipartFile getImageUrl() {
+        return imageUrl;
+    }
+
+    public DoctorRegistrationBindingModel setImageUrl(MultipartFile imageUrl) {
+        this.imageUrl = imageUrl;
         return this;
     }
 }

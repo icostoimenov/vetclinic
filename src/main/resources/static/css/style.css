@@ -14529,3 +14529,26 @@ select:not([multiple]) {
     display: flex;
     justify-content: flex-start;
 }
+
+.log-reg{
+    text-decoration: underline;
+    text-decoration-style: double;
+    text-decoration-thickness: from-font;
+}
+
+#docRegisterFileUp{
+    display: flex;
+    align-self: center;
+    width: 100%;
+    justify-content: center;
+    margin-bottom: 30px;
+}
+
+#docRegisterFileUpLabel{
+    display: flex;
+    flex-direction: column;
+}
+
+#docPicBtn{
+    text-align: center;
+}

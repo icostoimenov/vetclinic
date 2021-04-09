@@ -1,6 +1,7 @@
 package bg.softuni.vetclinic.model.service;
 
 import bg.softuni.vetclinic.model.entities.PetEntity;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -12,6 +13,7 @@ public class DoctorRegistrationServiceModel {
     private String password;
     private Long phoneNumber;
     private String specialization;
+    private MultipartFile imageUrl;
     private List<PetEntity> patients = new ArrayList<>();
 
 
@@ -66,6 +68,15 @@ public class DoctorRegistrationServiceModel {
 
     public DoctorRegistrationServiceModel setSpecialization(String specialization) {
         this.specialization = specialization;
+        return this;
+    }
+
+    public MultipartFile getImageUrl() {
+        return imageUrl;
+    }
+
+    public DoctorRegistrationServiceModel setImageUrl(MultipartFile imageUrl) {
+        this.imageUrl = imageUrl;
         return this;
     }
 }

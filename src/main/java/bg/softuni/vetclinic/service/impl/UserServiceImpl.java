@@ -8,15 +8,22 @@ import bg.softuni.vetclinic.model.service.DoctorRegistrationServiceModel;
 import bg.softuni.vetclinic.model.service.UserRegistrationServiceModel;
 import bg.softuni.vetclinic.repositories.UserRepository;
 import bg.softuni.vetclinic.repositories.UserRoleRepository;
+import bg.softuni.vetclinic.service.CloudinaryService;
 import bg.softuni.vetclinic.service.UserService;
+import org.apache.commons.io.IOUtils;
 import org.modelmapper.ModelMapper;
+import org.springframework.mock.web.MockMultipartFile;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
 import java.util.List;
 
 @Service
@@ -27,14 +34,16 @@ public class UserServiceImpl implements UserService {
     private final PasswordEncoder passwordEncoder;
     private final ModelMapper modelMapper;
     private final VetClinicUserService vetClinicUserService;
+    private final CloudinaryService cloudinaryService;
 
     public UserServiceImpl(UserRoleRepository userRoleRepository, UserRepository userRepository, PasswordEncoder passwordEncoder,
-                           ModelMapper modelMapper, VetClinicUserService vetClinicUserService ) {
+                           ModelMapper modelMapper, VetClinicUserService vetClinicUserService, CloudinaryService cloudinaryService) {
         this.userRoleRepository = userRoleRepository;
         this.userRepository = userRepository;
         this.passwordEncoder = passwordEncoder;
         this.modelMapper = modelMapper;
         this.vetClinicUserService = vetClinicUserService;
+        this.cloudinaryService = cloudinaryService;
     }
 
     @Override
@@ -77,17 +86,27 @@ public class UserServiceImpl implements UserService {
 
     }
 
-    public void registerAndLoginDoctor(DoctorRegistrationServiceModel serviceModel) {
+    public void registerDoctor(DoctorRegistrationServiceModel serviceModel) throws IOException {
+        if (serviceModel.getImageUrl() == null || serviceModel.getImageUrl().isEmpty()) {
+            File file = new File("src/main/resources/static/img/defaults/doc-default.jpg");
+            FileInputStream input = new FileInputStream(file);
+            serviceModel.setImageUrl(new MockMultipartFile("file", file.getName(), "image/png", IOUtils.toByteArray(input)));
+        }
+
+        MultipartFile img = serviceModel.getImageUrl();
+        String imageUrl = cloudinaryService.uploadImage(img);
+
         DoctorEntity newDoctor = modelMapper.map(serviceModel, DoctorEntity.class);
         newDoctor.setPassword(passwordEncoder.encode(serviceModel.getPassword()));
+        newDoctor.setProfilePicture(imageUrl);
 
         UserRoleEntity userRole = userRoleRepository.findByRole(UserRole.USER).orElseThrow(() -> new IllegalStateException("USER role not found. Please seed the roles!"));
         UserRoleEntity docRole = userRoleRepository.findByRole(UserRole.DOCTOR).orElseThrow(() -> new IllegalStateException("DOCTOR role not found. Please seed the roles!"));
         newDoctor.addRole(docRole);
         newDoctor.addRole(userRole);
 
-        userRepository.save(newDoctor);
 
+        userRepository.save(newDoctor);
 
     }
 

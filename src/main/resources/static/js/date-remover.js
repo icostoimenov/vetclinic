@@ -10,7 +10,7 @@ fetch("http://localhost:8080/appointments/api").then(response => response.json()
     }
 })
 
-$('input').datepicker({
+$('.app-date').datepicker({
     beforeShowDay: function(date){
         let string = jQuery.datepicker.formatDate('yy-mm-dd', date);
         return [ usedDates.indexOf(string) === -1 ]

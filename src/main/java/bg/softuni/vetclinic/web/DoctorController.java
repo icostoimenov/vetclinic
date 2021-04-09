@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.validation.Valid;
+import java.io.IOException;
 
 @Controller
 @RequestMapping("/doctors")
@@ -40,7 +41,7 @@ public class DoctorController {
     }
 
     @PostMapping("/register")
-    public String registerAndLoginUser(@Valid DoctorRegistrationBindingModel registrationBindingModel, BindingResult bindingResult, RedirectAttributes redirectAttributes) {
+    public String registerAndLoginUser(@Valid DoctorRegistrationBindingModel registrationBindingModel, BindingResult bindingResult, RedirectAttributes redirectAttributes) throws IOException {
 
         if (bindingResult.hasErrors()) {
             redirectAttributes.addFlashAttribute("registrationBindingModel", registrationBindingModel);
@@ -57,7 +58,7 @@ public class DoctorController {
         }
 
         DoctorRegistrationServiceModel  doctorService = modelMapper.map(registrationBindingModel, DoctorRegistrationServiceModel.class);
-        userService.registerAndLoginDoctor(doctorService);
+        userService.registerDoctor(doctorService);
 
         return "redirect:/home";
 

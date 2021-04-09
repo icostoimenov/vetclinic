@@ -14,7 +14,8 @@
         <div id="register-box">
             <div class="left">
                 <form class="reg-form" th:action="@{/doctors/register}" th:object="${registrationBindingModel}"
-                      method="POST">
+                      method="POST"
+                      enctype="multipart/form-data">
                     <h1>Register new Doctor</h1>
                     <div class="form-holder">
 
@@ -57,6 +58,17 @@
                             </small>
                         </div>
 
+                        <div class="inputfile-box" id="docRegisterFileUp">
+                            <input th:field="*{imageUrl}" type="file" id="file" class="inputfile" style="display: none" onchange='uploadFile(this)'>
+                            <label id="docRegisterFileUpLabel" for="file"  >
+                                <span id="file-name" class="file-box"  >Select doctor photo</span>
+                                <span class="file-button" style="text-align: center;">
+                                       <i class="fa fa-upload" id="docPicBtn" aria-hidden="true"></i>
+                                              Select File
+                                              </span>
+                            </label>
+                        </div>
+
 
                         <div class="reg-boxes-div">
                             <input type="password" th:errorclass="is-invalid" th:field="*{password}" name="password" placeholder="Password"/>
@@ -91,6 +103,7 @@
 </section>
 
 <footer th:replace="fragments/commons :: footer"></footer>
+<script src="/js/upload-btn.js"></script>
 <script src="/js/main.js"> </script>
 
 </body>

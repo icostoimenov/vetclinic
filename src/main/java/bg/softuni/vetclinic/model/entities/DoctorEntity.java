@@ -13,6 +13,7 @@ public class DoctorEntity extends UserEntity {
 
     private String specialization;
     private List<PetEntity> patients = new ArrayList<>();
+    private String profilePicture;
 
 
 
@@ -33,6 +34,15 @@ public class DoctorEntity extends UserEntity {
 
     public DoctorEntity setPatients(List<PetEntity> patients) {
         this.patients = patients;
+        return this;
+    }
+
+    public String getProfilePicture() {
+        return profilePicture;
+    }
+
+    public DoctorEntity setProfilePicture(String profilePicture) {
+        this.profilePicture = profilePicture;
         return this;
     }
 }

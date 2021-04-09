@@ -4,6 +4,7 @@ import bg.softuni.vetclinic.model.entities.UserEntity;
 import bg.softuni.vetclinic.model.service.DoctorRegistrationServiceModel;
 import bg.softuni.vetclinic.model.service.UserRegistrationServiceModel;
 
+import java.io.IOException;
 import java.util.List;
 
 public interface UserService {
@@ -11,7 +12,7 @@ public interface UserService {
     void seedUsers();
 
     void registerAndLoginUser(UserRegistrationServiceModel serviceModel);
-    void registerAndLoginDoctor(DoctorRegistrationServiceModel serviceModel);
+    void registerDoctor(DoctorRegistrationServiceModel serviceModel) throws IOException;
 
     boolean emailExists(String email);
 

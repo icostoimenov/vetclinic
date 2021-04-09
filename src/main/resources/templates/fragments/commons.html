@@ -87,8 +87,8 @@
                 <li><a class="nav-link " sec:authorize="hasRole('ROLE_DOCTOR') && !hasRole('ROLE_ADMIN')" href="/appointments/pending">My Appointments</a></li>
 
 
-                <li><a class="nav-link" sec:authorize="!isAuthenticated()" th:href="@{/users/login}">Login</a></li>
-                <li><a class="nav-link" sec:authorize="!isAuthenticated()" th:href="@{/users/register}">Register</a></li>
+                <li><a class="log-reg" sec:authorize="!isAuthenticated()" th:href="@{/users/login}">Login</a></li>
+                <li><a class="log-reg" sec:authorize="!isAuthenticated()" th:href="@{/users/register}">Register</a></li>
 
                 <span sec:authorize="isAuthenticated()" th:text="${'Hello, ' + #authentication.getName()}"></span>
                 <li>

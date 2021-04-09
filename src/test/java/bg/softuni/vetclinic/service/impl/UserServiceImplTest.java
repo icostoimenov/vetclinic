@@ -7,7 +7,7 @@ import bg.softuni.vetclinic.model.entities.UserRoleEntity;
 import bg.softuni.vetclinic.model.entities.enums.UserRole;
 import bg.softuni.vetclinic.repositories.UserRepository;
 import bg.softuni.vetclinic.repositories.UserRoleRepository;
-import org.junit.Assert;
+import bg.softuni.vetclinic.service.CloudinaryService;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -34,6 +34,8 @@ public class UserServiceImplTest {
     PasswordEncoder mockPasswordEncoder;
     @Mock
     VetClinicUserService mockVetClinicUserService;
+    @Mock
+    CloudinaryService mockCloudinaryService;
 
     @BeforeEach
     public void init() {
@@ -41,9 +43,7 @@ public class UserServiceImplTest {
         testUser1.setEmail("test@abv.bg").setPassword("123456").setFullName("Test Dummy").setPhoneNumber(8878548887985L);
         testUser1.setRoles(List.of(new UserRoleEntity().setRole(UserRole.USER)));
 
-
-
-        serviceToTest = new UserServiceImpl(mockUserRoleRepository, mockUserRepository, mockPasswordEncoder, new ModelMapper(), mockVetClinicUserService);
+        serviceToTest = new UserServiceImpl(mockUserRoleRepository, mockUserRepository, mockPasswordEncoder, new ModelMapper(), mockVetClinicUserService, mockCloudinaryService);
 
     }
 
