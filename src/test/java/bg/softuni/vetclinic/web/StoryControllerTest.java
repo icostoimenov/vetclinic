@@ -16,6 +16,7 @@ import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabas
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.security.test.context.support.WithMockUser;
+import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 
@@ -27,7 +28,8 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 @SpringBootTest
 @AutoConfigureMockMvc
-@AutoConfigureTestDatabase
+@DirtiesContext(classMode = DirtiesContext.ClassMode.BEFORE_EACH_TEST_METHOD)
+@AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.ANY)
 public class StoryControllerTest {
     private static final String STORY_CONTROLLER_PREFIX = "/stories";
 
@@ -67,8 +69,9 @@ public class StoryControllerTest {
         testStoryId = storyEntity.getId();
 
     }
+
     @AfterEach
-    public void tearDown(){
+    public void tearDown() {
         storyRepository.deleteAll();
         userRepository.deleteAll();
         userRoleRepository.deleteAll();
@@ -76,7 +79,7 @@ public class StoryControllerTest {
     }
 
     @Test
-    @WithMockUser(value = "test@abv.bg", roles = {"USER", "ADMIN"})
+    @WithMockUser(value = "test@abv.bg", roles = {"USER", "ADMIN", "DOCTOR"})
     void testShouldReturnValidStatusViewNameAndModel() throws Exception {
         mockMvc.perform(MockMvcRequestBuilders.get(STORY_CONTROLLER_PREFIX + "/{id}", testStoryId))
                 .andExpect(status().isOk())
@@ -85,8 +88,16 @@ public class StoryControllerTest {
     }
 
     @Test
-    @WithMockUser(value = "test@abv.bg", roles = {"USER", "ADMIN"})
-    void showAllStoriesShouldReturnValidStatusViewNameAndModelSize() throws Exception {
+    @WithMockUser(value = "test@abv.bg", roles = {"USER", "ADMIN", "DOCTOR"})
+    void testViewingStoryShouldIncreaseViewsCounterByOne() throws Exception {
+        Assertions.assertEquals(0, storyRepository.findById(testStoryId).orElseThrow().getViews());
+        mockMvc.perform(MockMvcRequestBuilders.get(STORY_CONTROLLER_PREFIX + "/{id}", testStoryId));
+        Assertions.assertEquals(1, storyRepository.findById(testStoryId).orElseThrow().getViews());
+    }
+
+    @Test
+    @WithMockUser(value = "test@abv.bg", roles = {"USER", "ADMIN", "DOCTOR"})
+    void showAllStoriesShouldReturnValidStatusViewName() throws Exception {
         StoryEntity storyEntity = new StoryEntity();
         storyEntity.setTitle("Second Test Story Title").setStoryText("Second Test input text of the story").setCreatedOn(LocalDate.parse("2021-04-07"))
                 .setImageUrl("https://res.cloudinary.com/dhgxopu1y/image/upload/v1617787028/tlsuf52uhgpgludnsfrw.jpg") //Passes empty image url to service :(
@@ -97,11 +108,11 @@ public class StoryControllerTest {
         mockMvc.perform(MockMvcRequestBuilders.get(STORY_CONTROLLER_PREFIX + "/show"))
                 .andExpect(status().isOk())
                 .andExpect(view().name("stories"))
-                .andExpect(model().size(2));
+                .andExpect(model().size(3));
     }
 
     @Test
-    @WithMockUser(value = "test@abv.bg", roles = {"USER", "ADMIN"})
+    @WithMockUser(value = "test@abv.bg", roles = {"USER", "ADMIN", "DOCTOR"})
     void addStory() throws Exception {
 
         mockMvc.perform(MockMvcRequestBuilders.post(STORY_CONTROLLER_PREFIX + "/add")
@@ -111,4 +122,8 @@ public class StoryControllerTest {
 
         Assertions.assertEquals(2, storyRepository.count());
     }
+
+
+
+
 }

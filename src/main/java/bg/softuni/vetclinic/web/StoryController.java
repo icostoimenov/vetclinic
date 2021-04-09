@@ -1,6 +1,7 @@
 package bg.softuni.vetclinic.web;
 
 import bg.softuni.vetclinic.model.binding.StoryPostBindingModel;
+import bg.softuni.vetclinic.model.entities.StoryEntity;
 import bg.softuni.vetclinic.model.service.StoryServiceModel;
 import bg.softuni.vetclinic.service.StoryService;
 import org.modelmapper.ModelMapper;
@@ -14,6 +15,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.validation.Valid;
 import java.io.IOException;
+import java.util.List;
 
 @Controller
 @RequestMapping("/stories")
@@ -34,6 +36,7 @@ public class StoryController {
 
     @GetMapping("/show")
     public String showGallery(Model model) {
+        List<StoryEntity> stories = storyService.findAllStories();
         model.addAttribute("stories", storyService.findAllStories());
         return "stories";
     }

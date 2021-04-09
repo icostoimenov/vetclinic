@@ -1,9 +1,6 @@
 package bg.softuni.vetclinic.web;
 
-import bg.softuni.vetclinic.repositories.AppointmentRepository;
-import bg.softuni.vetclinic.repositories.PetRepository;
-import bg.softuni.vetclinic.repositories.UserRepository;
-import bg.softuni.vetclinic.repositories.UserRoleRepository;
+import bg.softuni.vetclinic.repositories.*;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -13,15 +10,19 @@ import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabas
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.security.test.context.support.WithMockUser;
+import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
+
+import java.time.LocalDate;
 
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @SpringBootTest
 @AutoConfigureMockMvc
-@AutoConfigureTestDatabase
+@DirtiesContext(classMode = DirtiesContext.ClassMode.BEFORE_EACH_TEST_METHOD)
+@AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.ANY)
 public class AppointmentRestControllerTest {
 
     @Autowired
@@ -34,6 +35,8 @@ public class AppointmentRestControllerTest {
     private AppointmentRepository appointmentRepository;
     @Autowired
     private UserRoleRepository userRoleRepository;
+    @Autowired
+    DiagnosisRepository diagnosisRepository;
 
 
     private AppointmentTestData testData;
@@ -41,20 +44,20 @@ public class AppointmentRestControllerTest {
 
     @BeforeEach
     public void setUp(){
-        testData = new AppointmentTestData(userRepository, petRepository, appointmentRepository, userRoleRepository);
+        testData = new AppointmentTestData(userRepository, petRepository, appointmentRepository, userRoleRepository, diagnosisRepository);
         testData.init();
         testAppointmentId = testData.getTestAppointmentId();
     }
-    @AfterEach
-    public void tearDown(){
-        this.testData.cleanUp();
-    }
+//    @AfterEach
+//    public void tearDown(){
+//        this.testData.cleanUp();
+//    }
 
     @Test
     @WithMockUser(value = "test@abv.bg", roles = {"USER", "DOCTOR"})
-    public void testFetchAlbums() throws Exception {
+    public void testFetchAppointments() throws Exception {
         mockMvc.perform(MockMvcRequestBuilders.get("/appointments/api"))
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("[0].appointmentDate").value("2021-04-08"));
+                .andExpect(jsonPath("[0].appointmentDate").value(String.valueOf(LocalDate.now())));
     }
 }

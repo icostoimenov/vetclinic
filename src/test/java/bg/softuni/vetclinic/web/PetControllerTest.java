@@ -19,6 +19,7 @@ import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabas
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.security.test.context.support.WithMockUser;
+import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.web.multipart.MultipartFile;
@@ -37,7 +38,8 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 @SpringBootTest
 @AutoConfigureMockMvc
-@AutoConfigureTestDatabase
+@DirtiesContext(classMode = DirtiesContext.ClassMode.BEFORE_EACH_TEST_METHOD)
+@AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.ANY)
 public class PetControllerTest {
 
     private static final String PET_CONTROLLER_PREFIX = "/pets";
@@ -77,7 +79,7 @@ public class PetControllerTest {
     }
 
     @Test
-    @WithMockUser(value = "test@abv.bg", roles = {"USER", "ADMIN"})
+    @WithMockUser(value = "test@abv.bg", roles = {"USER", "ADMIN", "DOCTOR"})
     void testShouldReturnValidStatusViewNameAndModel() throws Exception {
         mockMvc.perform(MockMvcRequestBuilders.get(PET_CONTROLLER_PREFIX + "/add-pet"))
                 .andExpect(status().isOk())
@@ -85,7 +87,7 @@ public class PetControllerTest {
     }
 
     @Test
-    @WithMockUser(value = "test@abv.bg", roles = {"USER", "ADMIN"})
+    @WithMockUser(value = "test@abv.bg", roles = {"USER", "ADMIN", "DOCTOR"})
     void addPetAndDefaultImageSet() throws Exception {
         mockMvc.perform(MockMvcRequestBuilders.post(PET_CONTROLLER_PREFIX + "/add-pet")
                 .param("name", "TestingPet")

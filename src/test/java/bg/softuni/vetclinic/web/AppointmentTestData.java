@@ -1,38 +1,36 @@
 package bg.softuni.vetclinic.web;
 
-import bg.softuni.vetclinic.model.entities.AppointmentEntity;
-import bg.softuni.vetclinic.model.entities.DoctorEntity;
-import bg.softuni.vetclinic.model.entities.PetEntity;
-import bg.softuni.vetclinic.model.entities.UserRoleEntity;
+import bg.softuni.vetclinic.model.entities.*;
 import bg.softuni.vetclinic.model.entities.enums.AppointmentStatus;
 import bg.softuni.vetclinic.model.entities.enums.PetType;
 import bg.softuni.vetclinic.model.entities.enums.UserRole;
-import bg.softuni.vetclinic.repositories.AppointmentRepository;
-import bg.softuni.vetclinic.repositories.PetRepository;
-import bg.softuni.vetclinic.repositories.UserRepository;
-import bg.softuni.vetclinic.repositories.UserRoleRepository;
+import bg.softuni.vetclinic.repositories.*;
 
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Set;
 
 class AppointmentTestData {
 
     private long testDoctorId;
     private long testPetId;
     private long testAppointmentId;
+    private long testDiagnosisId;
 
     private UserRepository userRepository;
     private PetRepository petRepository;
     private AppointmentRepository appointmentRepository;
     private UserRoleRepository userRoleRepository;
+    private DiagnosisRepository diagnosisRepository;
 
 
     public AppointmentTestData(UserRepository userRepository, PetRepository petRepository,
-                               AppointmentRepository appointmentRepository, UserRoleRepository userRoleRepository) {
+                               AppointmentRepository appointmentRepository, UserRoleRepository userRoleRepository, DiagnosisRepository diagnosisRepository) {
         this.userRepository = userRepository;
         this.petRepository = petRepository;
         this.appointmentRepository = appointmentRepository;
         this.userRoleRepository = userRoleRepository;
+        this.diagnosisRepository = diagnosisRepository;
     }
 
     public void init() {
@@ -63,12 +61,21 @@ class AppointmentTestData {
         appointmentRepository.save(appointmentEntity);
         testAppointmentId = appointmentEntity.getId();
 
+        DiagnosisEntity diagnosisEntity = new DiagnosisEntity();
+        diagnosisEntity.setPatient(petEntity).setDoctorName(doctorEntity.getFullName()).setDiagnoseDate(LocalDate.now())
+                .setMedications(Set.of("med1", "med2")).setDoctorCommentary("test comment");
+
+        diagnosisRepository.save(diagnosisEntity);
+        this.testDiagnosisId = diagnosisEntity.getId();
+
+
     }
 
     void cleanUp() {
         appointmentRepository.deleteAll();
         petRepository.deleteAll();
         userRepository.deleteAll();
+
 
 
     }
@@ -83,5 +90,9 @@ class AppointmentTestData {
 
     public long getTestAppointmentId() {
         return testAppointmentId;
+    }
+
+    public long getTestDiagnosisId() {
+        return testDiagnosisId;
     }
 }
