@@ -1,13 +1,16 @@
 package bg.softuni.vetclinic.web;
 
 import bg.softuni.vetclinic.model.binding.AppointmentAddBindingModel;
+import bg.softuni.vetclinic.model.binding.DiagnosisAddBindingModel;
 import bg.softuni.vetclinic.model.entities.AppointmentEntity;
 import bg.softuni.vetclinic.model.entities.PetEntity;
 import bg.softuni.vetclinic.model.entities.UserEntity;
 import bg.softuni.vetclinic.model.entities.enums.AppointmentStatus;
 import bg.softuni.vetclinic.model.service.AppointmentServiceModel;
+import bg.softuni.vetclinic.model.service.DiagnosisServiceModel;
 import bg.softuni.vetclinic.repositories.PetRepository;
 import bg.softuni.vetclinic.service.AppointmentService;
+import bg.softuni.vetclinic.service.DiagnosisService;
 import bg.softuni.vetclinic.service.PetService;
 import bg.softuni.vetclinic.service.UserService;
 import org.modelmapper.ModelMapper;
@@ -20,6 +23,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.validation.Valid;
+import java.time.LocalDate;
 import java.util.List;
 
 @Controller
@@ -32,18 +36,24 @@ public class AppointmentController {
     private final AppointmentService appointmentService;
     private final PetRepository petRepository;
     private final PetService petService;
+    private final DiagnosisService diagnosisService;
 
-    public AppointmentController(UserService userService, ModelMapper modelMapper, AppointmentService appointmentService, PetRepository petRepository, PetService petService) {
+    public AppointmentController(UserService userService, ModelMapper modelMapper, AppointmentService appointmentService, PetRepository petRepository, PetService petService, DiagnosisService diagnosisService) {
         this.userService = userService;
         this.modelMapper = modelMapper;
         this.appointmentService = appointmentService;
         this.petRepository = petRepository;
         this.petService = petService;
+        this.diagnosisService = diagnosisService;
     }
 
     @ModelAttribute("appointmentAddBindingModel")
     public AppointmentAddBindingModel createBindingModel() {
         return new AppointmentAddBindingModel();
+    }
+    @ModelAttribute("diagnosisAddBindingModel")
+    public DiagnosisAddBindingModel createDiagnosisBindingModel() {
+        return new DiagnosisAddBindingModel();
     }
 
     @GetMapping("/make")
@@ -88,13 +98,27 @@ public class AppointmentController {
         return "appointments";
     }
 
-    @PutMapping("/diagnose/{id}")
-    public String diagnosePatient(@PathVariable Long id, @RequestParam("petId") Long petId, @RequestParam("diagnose") String diagnose, RedirectAttributes redirectAttributes) {
+    @PostMapping("/diagnose/{id}")
+    public String diagnosePatient(@PathVariable Long id, @Valid DiagnosisAddBindingModel diagnosisAddBindingModel, BindingResult bindingResult,
+                                  @RequestParam("petId") Long petId, RedirectAttributes redirectAttributes, @AuthenticationPrincipal UserDetails principal) {
+        if (bindingResult.hasErrors() ) {
+            redirectAttributes.addFlashAttribute("diagnosisAddBindingModel", diagnosisAddBindingModel);
+            redirectAttributes.addFlashAttribute("org.springframework.validation.BindingResult.diagnosisAddBindingModel", bindingResult);
+
+            return "redirect:/appointments/pending";
+        }
+
+        DiagnosisServiceModel diagnosisServiceModel = modelMapper.map(diagnosisAddBindingModel, DiagnosisServiceModel.class);
+        diagnosisServiceModel.setPatient(petId);
+        diagnosisServiceModel.setDoctorEmail(principal.getUsername());
+        diagnosisServiceModel.setDiagnoseDate(LocalDate.now());
+
+        diagnosisService.addDiagnosis(diagnosisServiceModel);
+
         AppointmentStatus status = AppointmentStatus.FINISHED;
-
-        appointmentService.setDiagnose(diagnose, status, id);
-        petService.addMedicalHistory(petId, diagnose);
-
+        appointmentService.setDiagnose(status, id);
+//        petService.addMedicalHistory(petId, diagnose);
+//
         return "redirect:/appointments/pending";
     }
 

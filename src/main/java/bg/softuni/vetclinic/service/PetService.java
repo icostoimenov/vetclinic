@@ -12,7 +12,7 @@ public interface PetService {
     void addPet(PetServiceModel serviceModel) throws IOException;
     List<PetViewModel> findPetsByOwner(UserEntity owner);
 
-    void addMedicalHistory(Long petId, String diagnose);
+//    void addMedicalHistory(Long petId, String diagnose);
 
     PetEntity findById(Long id);
 

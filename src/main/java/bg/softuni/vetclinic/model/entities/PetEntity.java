@@ -17,7 +17,7 @@ public class PetEntity extends BaseEntity {
     private PetType type;
     private String imageUrl;
     private UserEntity owner;
-    private Set<String> medicalHistory;
+    private Set<DiagnosisEntity> medicalHistory;
 
     @Column(nullable = false)
     public String getName() {
@@ -71,12 +71,12 @@ public class PetEntity extends BaseEntity {
     }
 
 
-    @ElementCollection(fetch = FetchType.EAGER)
-    public Set<String> getMedicalHistory() {
+    @OneToMany(fetch = FetchType.EAGER)
+    public Set<DiagnosisEntity> getMedicalHistory() {
         return medicalHistory;
     }
 
-    public PetEntity setMedicalHistory(Set<String> diagnoses) {
+    public PetEntity setMedicalHistory(Set<DiagnosisEntity> diagnoses) {
         this.medicalHistory = diagnoses;
         return this;
     }

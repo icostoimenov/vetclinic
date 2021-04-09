@@ -17,6 +17,6 @@ public interface AppointmentRepository extends JpaRepository<AppointmentEntity, 
     List<AppointmentEntity> findAllByDoctorAndStatusLikeOrderByAppointmentDateAsc(UserEntity doctorEntity, AppointmentStatus appointmentStatus);
 
     @Modifying
-    @Query("UPDATE AppointmentEntity ap set ap.doctorCommentary = ?1, ap.status = ?2 where ap.id = ?3")
-    void updateAppDiagnoseAndStatus(String diagnose, AppointmentStatus appointmentStatus, Long appId);
+    @Query("UPDATE AppointmentEntity ap set ap.status = ?1 where ap.id = ?2")
+    void updateAppDiagnoseAndStatus(AppointmentStatus appointmentStatus, Long appId);
 }

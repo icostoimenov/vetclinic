@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-    <title>Medilab Bootstrap Template - Index</title>
+    <title>Pawsome Vets</title>
     <meta content="" name="description">
     <meta content="" name="keywords">
 
@@ -84,7 +84,10 @@
 <!--                <li><a class="nav-link scrollto" href="#doctors">Doctors</a></li>-->
 <!--                <li><a class="nav-link scrollto" href="#contact">Contact</a></li>-->
                 <li><a class="nav-link " sec:authorize="isAuthenticated()" href="/pets/my-pets">My Pets</a></li>
-                <li><a class="nav-link " sec:authorize="hasRole('ROLE_DOCTOR') && !hasRole('ROLE_ADMIN')" href="/appointments/pending">My Appointments</a></li>
+                <li><a class="nav-link " sec:authorize="hasRole('ROLE_DOCTOR') && !hasRole('ROLE_ADMIN')" href="/appointments/pending">
+                    <span style=" background-color: #3daf98; color: white; text-decoration: none; padding: 7px 13px; position: relative; display: inline-block; border-radius: 2px;">My Appointments</span>
+                    <span class="badge" style="position: absolute; top: -10px; right: -10px; padding: 5px 10px; border-radius: 50%; background: red; color: white;" sec:authorize="">3</span>
+                </a></li>
 
 
                 <li><a class="log-reg" sec:authorize="!isAuthenticated()" th:href="@{/users/login}">Login</a></li>

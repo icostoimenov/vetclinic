@@ -61,8 +61,8 @@ public class AppointmentServiceImpl implements AppointmentService {
     }
 
     @Override
-    public void setDiagnose(String diagnose, AppointmentStatus appointmentStatus, Long appId) {
-        appointmentRepository.updateAppDiagnoseAndStatus(diagnose, appointmentStatus, appId);
+    public void setDiagnose(AppointmentStatus appointmentStatus, Long appId) {
+        appointmentRepository.updateAppDiagnoseAndStatus(appointmentStatus, appId);
     }
 
 

@@ -15,5 +15,5 @@ public interface AppointmentService {
 
     List<AppointmentEntity> allActiveAppsForDoctor(UserEntity doctorEntity, AppointmentStatus appointmentStatus);
 
-    void setDiagnose(String diagnose, AppointmentStatus appointmentStatus, Long appId);
+    void setDiagnose(AppointmentStatus appointmentStatus, Long appId);
 }

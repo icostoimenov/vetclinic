@@ -1,5 +1,6 @@
 package bg.softuni.vetclinic.service.impl;
 
+import bg.softuni.vetclinic.model.entities.DiagnosisEntity;
 import bg.softuni.vetclinic.model.entities.PetEntity;
 import bg.softuni.vetclinic.model.entities.UserEntity;
 import bg.softuni.vetclinic.model.service.PetServiceModel;
@@ -61,11 +62,11 @@ public class PetServiceImpl implements PetService {
         return petRepository.findAllByOwner(owner).stream().map(pe -> modelMapper.map(pe, PetViewModel.class)).collect(Collectors.toList());
     }
 
-    @Override
-    public void addMedicalHistory(Long petId, String diagnose) {
-        PetEntity pet = petRepository.findById(petId).orElseThrow(IllegalArgumentException::new);
-        pet.getMedicalHistory().add(diagnose);
-    }
+//    @Override
+//    public void addMedicalHistory(Long petId, DiagnosisEntity diagnose) {
+//        PetEntity pet = petRepository.findById(petId).orElseThrow(IllegalArgumentException::new);
+//        pet.getMedicalHistory().add(diagnose);
+//    }
 
     @Override
     public PetEntity findById(Long id) {

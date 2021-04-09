@@ -14,7 +14,6 @@ public class AppointmentViewModel {
     private String petName;
     private String appointmentDate;
     private AppointmentStatus status;
-    private String doctorCommentary;
 
     public String getOwnerName() {
         return ownerName;
@@ -72,14 +71,6 @@ public class AppointmentViewModel {
         return this;
     }
 
-    public String getDoctorCommentary() {
-        return doctorCommentary;
-    }
-
-    public AppointmentViewModel setDoctorCommentary(String doctorCommentary) {
-        this.doctorCommentary = doctorCommentary;
-        return this;
-    }
 
     public Long getPetId() {
         return petId;
