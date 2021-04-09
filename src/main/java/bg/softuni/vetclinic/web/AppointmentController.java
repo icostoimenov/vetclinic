@@ -51,6 +51,7 @@ public class AppointmentController {
     public AppointmentAddBindingModel createBindingModel() {
         return new AppointmentAddBindingModel();
     }
+
     @ModelAttribute("diagnosisAddBindingModel")
     public DiagnosisAddBindingModel createDiagnosisBindingModel() {
         return new DiagnosisAddBindingModel();
@@ -91,17 +92,18 @@ public class AppointmentController {
 
     @GetMapping("/pending")
     public String pendingApps(@AuthenticationPrincipal UserDetails principal, Model model) {
-        UserEntity currentUser = userService.findByEmail(principal.getUsername());
-        List<AppointmentEntity> pendingApps = appointmentService.allActiveAppsForDoctor(currentUser, AppointmentStatus.PENDING);
-        model.addAttribute("pendingAppointments", pendingApps);
-
+        if (principal.getAuthorities().size() == 2) {
+            UserEntity currentUser = userService.findByEmail(principal.getUsername());
+            List<AppointmentEntity> pendingApps = appointmentService.allActiveAppsForDoctor(currentUser, AppointmentStatus.PENDING);
+            model.addAttribute("pendingAppointments", pendingApps);
+        }
         return "appointments";
     }
 
     @PostMapping("/diagnose/{id}")
     public String diagnosePatient(@PathVariable Long id, @Valid DiagnosisAddBindingModel diagnosisAddBindingModel, BindingResult bindingResult,
                                   @RequestParam("petId") Long petId, RedirectAttributes redirectAttributes, @AuthenticationPrincipal UserDetails principal) {
-        if (bindingResult.hasErrors() ) {
+        if (bindingResult.hasErrors()) {
             redirectAttributes.addFlashAttribute("diagnosisAddBindingModel", diagnosisAddBindingModel);
             redirectAttributes.addFlashAttribute("org.springframework.validation.BindingResult.diagnosisAddBindingModel", bindingResult);
 

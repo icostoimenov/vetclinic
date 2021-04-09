@@ -55,6 +55,8 @@
                               th:method="POST" >
                             Medications: <textarea th:field="${diagnosisAddBindingModel.medications}" name="medications" id="medications" cols="10" rows="5"></textarea>
                             Commentary: <textarea th:field="${diagnosisAddBindingModel.doctorCommentary}" name="diagnose" id="diagnose-text" cols="10" rows="5"></textarea>
+                            <small th:if="${#fields.hasErrors('diagnosisAddBindingModel.doctorCommentary')}"  id="diagnoseError"
+                                   class="invalid-feedback text-light form-text bg-danger rounded">Please add diagnose information.</small>
                             <button type="submit" class="nav-link active show app"
                                     style="border-right: 0; color: black">Diagnose
                             </button>
