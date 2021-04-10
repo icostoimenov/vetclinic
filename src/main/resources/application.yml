@@ -1,0 +1,41 @@
+cloudinary:
+    api-key: 752678435423313
+    api-secret: 11Hawu8i4S7D8F-9vie6E2VOKs0
+    cloud-name: dhgxopu1y
+logging:
+    level:
+        blog: WARN
+        org: WARN
+        org.hibernate.SQL: DEBUG
+multipart:
+    enabled: true
+spring:
+    datasource:
+        driverClassName: com.mysql.cj.jdbc.Driver
+        password: "${MYSQL_PASSWORD}"
+        url: jdbc:mysql://localhost:3306/vet_clinic?createDatabaseIfNotExist=true&amp
+        username: "${MYSQL_USERNAME}"
+    http:
+        multipart:
+            max-file-size: 500000KB
+            max-request-size: 500000KB
+    jpa:
+        database-platform: org.hibernate.dialect.MySQL8Dialect
+        hibernate:
+            ddl-auto: update
+        open-in-view: false
+        properties:
+            hibernate:
+                format_sql: true
+    mvc:
+        hiddenmethod:
+            filter:
+                enabled: true
+    servlet:
+        multipart:
+            max-file-size: 1MB
+            max-request-size: 5MB
+
+topStoryCron:
+    refresh-cron: "0 */1 * * * *"
+

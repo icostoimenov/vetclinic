@@ -6,12 +6,10 @@ import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
-import java.util.Optional;
-
 @Repository
 public interface StoryRepository extends JpaRepository<StoryEntity, Long> {
 
-    Optional<StoryEntity> findTopByOrderByCreatedOnDescViewsDesc();
+    StoryEntity findFirstByOrderByViewsDesc();
 
     @Modifying
     @Query("UPDATE StoryEntity story set story.views = story.views + 1 where story.id =?1")
