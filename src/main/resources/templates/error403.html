@@ -9,13 +9,16 @@
 
 <header id="header" class="fixed-top" th:replace="fragments/commons :: header"></header>
 
-<section style="    text-align: center;
-    font-size: 25px;" class="ftco-section">
-    <h1 class="error-heading">OH NO!</h1>
-     It seems you are trying to access a page you are not supposed to look at.<br>
-    <a class="error-home-link" th:href="@{/home}">Please head back.</a>
+<section style="text-align: center; font-size: 25px; display: flex; justify-content: center;" class="ftco-section">
+    <div style="display: flex; align-items: center; font-size: 38px; font-weight: bold; flex-direction: column;">
+        OH NO!
+        It seems you are trying to access a page you are not supposed to look at.<br>
+        <a class="error-home-link" th:href="@{/home}">Please head back.</a></div>
+    <div style="display: flex; background: url(../img/error-owl.png) no-repeat; background-size: contain; height: 245px; width: 200px;">
 
+    </div>
 </section>
+
 
 <footer th:replace="fragments/commons :: footer"></footer>
 <script src="/js/main.js"> </script>

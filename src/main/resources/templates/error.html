@@ -9,10 +9,12 @@
 
 <header id="header" class="fixed-top" th:replace="fragments/commons :: header"></header>
 
-<section style="    text-align: center;
-    font-size: 25px;" class="ftco-section">
-    Oh no! Something went wrong! <br>
-    Please excuse us, we are working on it...
+<section style="text-align: center; font-size: 25px; display: flex; justify-content: center;" class="ftco-section">
+    <div style="display: flex; align-items: center; font-size: 38px; font-weight: bold;">Oh no! Something went wrong! <br>
+        Please excuse us, we are working on it...</div>
+    <div style="display: flex; background: url(../img/error-owl.png) no-repeat; background-size: contain; height: 245px; width: 200px;">
+
+    </div>
 </section>
 
 <footer th:replace="fragments/commons :: footer"></footer>

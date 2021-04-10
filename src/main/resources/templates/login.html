@@ -9,8 +9,8 @@
 
 <header id="header" class="fixed-top" th:replace="fragments/commons :: header"></header>
 
-<section class="ftco-section" style="margin-top: 100px;">
-    <div class="container">
+<section class="ftco-section" style="margin-top: 100px; background: url(../img/login-bg.jpg) no-repeat; background-size: cover; height: 100%;">
+    <div class="container" style="background: rgba(0, 0, 0, 0.8); border-radius: 70px;">
         <div class="row justify-content-center">
             <div class="col-md-6 text-center mb-5">
                 <h2 class="heading-section" style="margin-top: 50px;">Login</h2>
@@ -26,10 +26,12 @@
 
                     <form th:action="@{/users/login}" method="POST" class="signin-form">
                         <div class="form-group">
-                            <input name="username" type="text" th:value="${username}" class="form-control" placeholder="Username" required style="width: 100%">
+                            <input name="username" type="text" th:value="${username}" class="form-control" placeholder="Username" required
+                                   style="width: 100%; background: dimgrey; color: wheat !important;">
                         </div>
                         <div class="form-group">
-                            <input name="password" id="password-field" type="password" class="form-control" placeholder="Password" required style="width: 100%">
+                            <input name="password" id="password-field" type="password" class="form-control" placeholder="Password" required
+                                   style="width: 100%; background: dimgrey; color: wheat !important;">
                             <span toggle="#password-field" class="fa fa-fw fa-eye field-icon toggle-password"></span>
                         </div>
                         <div class="form-group">
