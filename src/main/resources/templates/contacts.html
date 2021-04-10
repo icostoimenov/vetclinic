@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head th:insert="fragments/commons :: head">
+
+</head>
+
+<body class="img js-fullheight" style="background: white">
+
+<header id="header" class="fixed-top" th:replace="fragments/commons :: header"></header>
+
+<section class="contacts-section">
+    <div>
+        <iframe width="600" height="450" style="border:0" loading="lazy" allowfullscreen
+                src="https://www.google.com/maps/embed/v1/place?q=42.67584169037085%2C%2023.28886070885325&key=AIzaSyDpLuPdAQrPqeWgHRxTyQMeLTZBvai0Q20"></iframe>
+        </iframe>
+    </div>
+    <div class="container">
+        <div class="row mt-5" style="margin-left: 122px;">
+
+            <div class="col-lg-4">
+                <div class="info">
+                    <div class="address">
+                        <i class="bi bi-geo-alt"></i>
+                        <h4>Location:</h4>
+                        <p>bul Gotse Delchev 41, Sofia, Bulgaria </p>
+                    </div>
+
+                    <div class="email">
+                        <i class="bi bi-envelope"></i>
+                        <h4>Email:</h4>
+                        <p>vets@paw.com</p>
+                    </div>
+
+                    <div class="phone">
+                        <i class="bi bi-phone"></i>
+                        <h4>Call:</h4>
+                        <p>+1 5589 55488 55</p>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+</section><!-- End Contact Section -->
+
+<footer th:replace="fragments/commons :: footer"></footer>
+
+<script src="js/login/jquery.min.js"></script>
+<script src="js/login/popper.js"></script>
+<script src="js/login/bootstrap.min.js"></script>
+<script src="js/login/main.js"></script>
+<script src="/js/main.js"></script>
+
+</body>
+</html>

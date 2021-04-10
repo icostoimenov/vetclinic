@@ -126,4 +126,9 @@ public class UserServiceImpl implements UserService {
 
         return userRepository.findDoctorsOnly();
     }
+
+    @Override
+    public List<DoctorEntity> findAllDoctors() {
+        return userRepository.findAllDoctorsOnly();
+    }
 }

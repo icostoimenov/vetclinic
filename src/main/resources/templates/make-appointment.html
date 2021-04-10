@@ -20,7 +20,7 @@
         <form th:action="@{/appointments/make}" method="POST" th:object="${appointmentAddBindingModel}" class="php-email-form">
 
             <div class="row">
-                <div class="col-md-4 form-group mt-3">
+                <div class="col-md-4 form-group mt-3" id="dateCont">
                     <p>Date: <input type="text" th:field="*{appointmentDate}" id="datepicker" class="app-date" autocomplete="off" readonly="readonly">
                         <small th:if="${#fields.hasErrors('appointmentDate')}" id="ageError"
                                class="invalid-feedback text-light form-text bg-danger rounded">Please select a date.</small></p>

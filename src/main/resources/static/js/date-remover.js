@@ -15,5 +15,7 @@ $('.app-date').datepicker({
         let string = jQuery.datepicker.formatDate('yy-mm-dd', date);
         return [ usedDates.indexOf(string) === -1 ]
     },
-    minDate: 0
+    minDate: 0,
+    orientation: 'bottom-left',
+    container: 'dateCont'
 });

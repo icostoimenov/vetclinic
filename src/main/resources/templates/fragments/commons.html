@@ -54,7 +54,7 @@
         <div class="head-logo">
 
         </div>
-        <h1 class="logo me-auto"><a href="/">Pawsome Vets</a></h1>
+        <h1 class="logo me-auto"><a href="/home">Pawsome Vets</a></h1>
 
 
         <nav id="navbar" class="navbar order-last order-lg-0">
@@ -63,30 +63,19 @@
                         class="bi bi-chevron-down"></i></a>
                     <ul>
                         <li><a th:href="@{/doctors/register}">Register a doctor</a></li>
-<!--                        <li class="dropdown"><a href="#"><span>Deep Drop Down</span> <i class="bi bi-chevron-right"></i></a>-->
-<!--                            <ul>-->
-<!--                                <li><a href="#">Deep Drop Down 1</a></li>-->
-<!--                                <li><a href="#">Deep Drop Down 2</a></li>-->
-<!--                                <li><a href="#">Deep Drop Down 3</a></li>-->
-<!--                                <li><a href="#">Deep Drop Down 4</a></li>-->
-<!--                                <li><a href="#">Deep Drop Down 5</a></li>-->
-<!--                            </ul>-->
-<!--                        </li> -->
-                        <li><a href="#">Drop Down 2</a></li>
-                        <li><a href="#">Drop Down 3</a></li>
-                        <li><a href="#">Drop Down 4</a></li>
+
+
                     </ul>
                 </li>
-<!--                <li><a class="nav-link scrollto active" href="#hero">Home</a></li>-->
-<!--                <li><a class="nav-link scrollto" href="#about">About</a></li>-->
-<!--                <li><a class="nav-link scrollto" href="#services">Services</a></li>-->
+
+                <li><a class="nav-link scrollto" href="/contacts">Contacts</a></li>
+                <li><a class="nav-link scrollto" href="/doctors">Doctors</a></li>
                 <li><a class="nav-link scrollto" sec:authorize="isAuthenticated()" href="/stories/show">Stories</a></li>
-<!--                <li><a class="nav-link scrollto" href="#doctors">Doctors</a></li>-->
-<!--                <li><a class="nav-link scrollto" href="#contact">Contact</a></li>-->
+
                 <li><a class="nav-link " sec:authorize="isAuthenticated()" href="/pets/my-pets">My Pets</a></li>
                 <li><a class="nav-link " sec:authorize="hasRole('ROLE_DOCTOR')" href="/appointments/pending">
-                    <span style=" background-color: #3daf98; color: white; text-decoration: none; padding: 7px 13px; position: relative; display: inline-block; border-radius: 2px;">My Appointments</span>
-                    <span class="badge" style="position: absolute; top: 0px; right: -10px; padding: 5px 10px; border-radius: 50%; background: red; color: white;" th:text="${notifications}">3</span>
+                    <span style=" background-color: #3daf98; color: white; text-decoration: none; padding: 7px 13px; position: relative; display: inline-block; border-radius: 30px;">My Appointments</span>
+                    <span class="badge" id="notificationNum" style="position: absolute; top: 5px; right: -8px; padding: 5px 10px; border-radius: 50%; background: red; color: white;" th:text="${notifications}">3</span>
                 </a></li>
 
 
@@ -117,37 +106,42 @@
             <div class="row">
 
                 <div class="col-lg-3 col-md-6 footer-contact">
-                    <h3>Medilab</h3>
+                    <h3>Pawsome Vets</h3>
                     <p>
-                        A108 Adam Street <br>
-                        New York, NY 535022<br>
-                        United States <br><br>
+                        bul Gotse Delchev 41 <br>
+                        Sofia, Bulgaria <br>
                         <strong>Phone:</strong> +1 5589 55488 55<br>
-                        <strong>Email:</strong> info@example.com<br>
+                        <strong>Email:</strong> vets@paw.com<br>
                     </p>
                 </div>
 
                 <div class="col-lg-2 col-md-6 footer-links">
                     <h4>Useful Links</h4>
                     <ul>
-                        <li><i class="bx bx-chevron-right"></i> <a href="#">Home</a></li>
-                        <li><i class="bx bx-chevron-right"></i> <a href="#">About us</a></li>
-                        <li><i class="bx bx-chevron-right"></i> <a href="#">Services</a></li>
-                        <li><i class="bx bx-chevron-right"></i> <a href="#">Terms of service</a></li>
-                        <li><i class="bx bx-chevron-right"></i> <a href="#">Privacy policy</a></li>
+                        <li><i class="bx bx-chevron-right"></i> <a href="/contacts">Contacts</a></li>
+                        <li><i class="bx bx-chevron-right"></i> <a href="/doctors">Our Team</a></li>
+                        <th:block sec:authorize="isAuthenticated()">
+                            <li><i class="bx bx-chevron-right"></i> <a  href="/stories/show">Stories</a></li>
+                        </th:block>
+
+                        <th:block sec:authorize="!isAuthenticated()">
+                            <li><i class="bx bx-chevron-right"></i> <a   th:href="@{/users/login}">Login</a></li>
+                            <li><i class="bx bx-chevron-right"></i> <a  th:href="@{/users/register}">Register</a></li>
+                        </th:block>
                     </ul>
                 </div>
 
-                <div class="col-lg-3 col-md-6 footer-links">
+                <th:block sec:authorize="isAuthenticated()"><div class="col-lg-3 col-md-6 footer-links">
                     <h4>Our Services</h4>
                     <ul>
-                        <li><i class="bx bx-chevron-right"></i> <a href="#">Web Design</a></li>
-                        <li><i class="bx bx-chevron-right"></i> <a href="#">Web Development</a></li>
-                        <li><i class="bx bx-chevron-right"></i> <a href="#">Product Management</a></li>
-                        <li><i class="bx bx-chevron-right"></i> <a href="#">Marketing</a></li>
-                        <li><i class="bx bx-chevron-right"></i> <a href="#">Graphic Design</a></li>
+                        <li><i class="bx bx-chevron-right"></i><a href="/appointments/make"> Make an Appointment</a></li>
+                        <li><i class="bx bx-chevron-right"></i><a href="/stories/show"> Stories</a></li>
+                        <li><i class="bx bx-chevron-right"></i><a href="/pets/my-pets"> My Pets</a></li>
+                        <li><i class="bx bx-chevron-right"></i><a href="/contacts"> Location</a></li>
+                        <li><i class="bx bx-chevron-right"></i><a href="/doctors"> Our Team</a></li>
                     </ul>
-                </div>
+                    <a href=""></a>
+                </div></th:block>
 
                 <div class="col-lg-4 col-md-6 footer-newsletter">
                     <h4>Join Our Newsletter</h4>
@@ -165,15 +159,9 @@
 
         <div class="me-md-auto text-center text-md-start">
             <div class="copyright">
-                &copy; Copyright <strong><span>Medilab</span></strong>. All Rights Reserved
+                &copy; Copyright <strong><span>Pawesome vets</span></strong>. All Rights Reserved
             </div>
-            <div class="credits">
-                <!-- All the links in the footer should remain intact. -->
-                <!-- You can delete the links only if you purchased the pro version. -->
-                <!-- Licensing information: https://bootstrapmade.com/license/ -->
-                <!-- Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/medilab-free-medical-bootstrap-theme/ -->
-                Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a>
-            </div>
+
         </div>
         <div class="social-links text-center text-md-right pt-3 pt-md-0">
             <a href="#" class="twitter"><i class="bx bxl-twitter"></i></a>

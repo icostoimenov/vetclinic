@@ -4,6 +4,7 @@ import bg.softuni.vetclinic.model.entities.enums.PetType;
 
 public class PetViewModel {
 
+    private Long id;
     private String name;
     private int age;
     private String gender;
@@ -65,5 +66,14 @@ public class PetViewModel {
                 ", type=" + type +
                 ", imageUrl='" + imageUrl + '\'' +
                 '}';
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public PetViewModel setId(Long id) {
+        this.id = id;
+        return this;
     }
 }

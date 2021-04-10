@@ -23,6 +23,9 @@ public interface UserRepository extends JpaRepository<UserEntity, Long> {
     @Query("SELECT d FROM DoctorEntity d" + " WHERE size(d.roles) = 2 ")
     List<UserEntity> findDoctorsOnly();
 
+    @Query("SELECT d FROM DoctorEntity d" + " WHERE size(d.roles) = 2 ")
+    List<DoctorEntity> findAllDoctorsOnly();
+
 
 
 

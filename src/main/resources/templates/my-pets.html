@@ -6,7 +6,7 @@
 </head>
 <body>
 <header id="header" class="fixed-top" th:replace="fragments/commons :: header"></header>
-<section id="doctors" class="doctors">
+<section id="doctors" class="doctors" style="margin-top: 40px">
     <div class="container my-pets-div">
 
         <div class="section-title">
@@ -23,12 +23,7 @@
                         <h4 th:text="*{p.name}">Name</h4>
                         <span th:text="*{p.gender}">Gender</span>
                         <p th:text="*{p.age + ' years old'}">Age</p> <p th:text="*{p.type}">Type</p>
-<!--                        <div class="social">-->
-<!--                            <a href=""><i class="ri-twitter-fill"></i></a>-->
-<!--                            <a href=""><i class="ri-facebook-fill"></i></a>-->
-<!--                            <a href=""><i class="ri-instagram-fill"></i></a>-->
-<!--                            <a href=""> <i class="ri-linkedin-box-fill"></i> </a>-->
-<!--                        </div>-->
+                        <a th:href="@{/pets/{id}(id=*{p.id})}" style="color: #1668ff; font-size: 17px">Medical History</a>
                     </div>
                 </div>
             </div>

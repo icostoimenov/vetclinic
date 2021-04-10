@@ -1,5 +1,6 @@
 package bg.softuni.vetclinic.service;
 
+import bg.softuni.vetclinic.model.entities.DoctorEntity;
 import bg.softuni.vetclinic.model.entities.UserEntity;
 import bg.softuni.vetclinic.model.service.DoctorRegistrationServiceModel;
 import bg.softuni.vetclinic.model.service.UserRegistrationServiceModel;
@@ -19,4 +20,5 @@ public interface UserService {
     UserEntity findByEmail(String email);
 
     List<UserEntity> findDoctorsOnly();
+    List<DoctorEntity> findAllDoctors();
 }

@@ -1,11 +1,7 @@
 @import url(https://fonts.googleapis.com/css?family=Merriweather);
+@import url(https://fonts.googleapis.com/css?family=Lato:400,300,700);
+@import url(https://fonts.googleapis.com/css?family=Roboto:400,300,500);
 
-/**
-* Template Name: Medilab - v4.1.0
-* Template URL: https://bootstrapmade.com/medilab-free-medical-bootstrap-theme/
-* Author: BootstrapMade.com
-* License: https://bootstrapmade.com/license/
-*/
 
 /*--------------------------------------------------------------
 # General
@@ -84,6 +80,7 @@ h1, h2, h3, h4, h5, h6 {
     padding: 20px !important;
 }
 
+
 /*--------------------------------------------------------------
 # Top Bar
 --------------------------------------------------------------*/
@@ -146,6 +143,8 @@ h1, h2, h3, h4, h5, h6 {
     top: 40px;
     box-shadow: 0px 2px 15px rgba(25, 119, 204, 0.1);
     background-color: lightgoldenrodyellow;
+    font-size: 17px;
+    font-weight: 400;
 }
 
 #header.header-scrolled {
@@ -181,8 +180,9 @@ h1, h2, h3, h4, h5, h6 {
     padding: 8px 25px;
     white-space: nowrap;
     transition: 0.3s;
-    font-size: 14px;
+    font-size: 17px;
     display: inline-block;
+    font-weight: 400;
 }
 
 .appointment-btn:hover {
@@ -229,12 +229,13 @@ h1, h2, h3, h4, h5, h6 {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    font-size: 14px;
+    font-size: 17px;
     color: #2c4964;
     white-space: nowrap;
     transition: 0.3s;
     border-bottom: 2px solid #fff;
     padding: 5px 2px;
+    font-weight: 400;
 }
 
 .navbar a i {
@@ -426,9 +427,9 @@ h1, h2, h3, h4, h5, h6 {
 --------------------------------------------------------------*/
 #hero {
     width: 100%;
-    height: 90vh;
-    background: url("../img/hero-bg.jpg") top center;
-    background-size: cover;
+    height: 73vh;
+    background: url("../img/home-bg.jpg") top center;
+    background-size: auto;
     margin-bottom: -200px;
 }
 
@@ -1159,7 +1160,8 @@ section {
 
 .doctors .member p {
     margin: 10px 0 0 0;
-    font-size: 14px;
+    font-size: 17px;
+    color: black;
 }
 
 .doctors .member .social {
@@ -7086,6 +7088,11 @@ input[type="button"].btn-block {
     -o-transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
     transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
     transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out, -webkit-box-shadow 0.15s ease-in-out;
+}
+@media  (max-width: 900px ) {
+    #notificationNum {
+        display: none;
+    }
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -13097,7 +13104,7 @@ h1, h2, h3, h4, h5,
 .field-icon {
     position: absolute;
     top: 50%;
-    right: 128px;
+    right: 4%;
     -webkit-transform: translateY(-50%);
     -ms-transform: translateY(-50%);
     transform: translateY(-50%);
@@ -13269,7 +13276,6 @@ textarea.form-control {
 }
 
 /*login*/
-@import url(https://fonts.googleapis.com/css?family=Roboto:400,300,500);
 *:focus {
     outline: none;
 }
@@ -13442,7 +13448,7 @@ button.social-signin.google {
     background-repeat: no-repeat;
     background-size: auto;
     background-image: linear-gradient(rgba(255, 255, 255, 0), rgba(255, 255, 255, 0)), url('../img/group-pets.jpeg');
-    height: 1000px;
+    height: 1066px;
 }
 
 .doc-reg-div {
@@ -13539,6 +13545,8 @@ button.social-signin.google {
     border-radius: 14px;
     padding: 5px 10px;
     color: white;
+    font-size: 17px;
+    font-weight: 400;
 }
 
 html, body {
@@ -13557,8 +13565,7 @@ h1 {
     display: flex;
     max-width: 600px;
     text-align: center;
-    margin: 0 auto 140px
-
+    margin: 50px auto 140px;
 }
 
 .cf input, form textarea, form select {
@@ -14530,13 +14537,13 @@ select:not([multiple]) {
     justify-content: flex-start;
 }
 
-.log-reg{
+.log-reg {
     text-decoration: underline;
     text-decoration-style: double;
     text-decoration-thickness: from-font;
 }
 
-#docRegisterFileUp{
+#docRegisterFileUp {
     display: flex;
     align-self: center;
     width: 100%;
@@ -14544,23 +14551,142 @@ select:not([multiple]) {
     margin-bottom: 30px;
 }
 
-#docRegisterFileUpLabel{
+#docRegisterFileUpLabel {
     display: flex;
     flex-direction: column;
 }
 
-#docPicBtn{
+#docPicBtn {
     text-align: center;
 }
 
-.mostPopularStory{
-    background: #f0d2fa;
+.mostPopularStory {
     color: blue;
     font-weight: 900;
     font-size: 43px;
-    font-family: serif;
+    font-family: monospace;
 }
 
-.readMoreBtn{
+.readMoreBtn {
     color: #2eabab;
+}
+
+#map {
+    height: 400px;
+    width: 100%;
+}
+
+.contacts-section {
+    margin-left: 150px;
+    display: flex;
+    margin-top: 170px;
+}
+
+
+html, body {
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Lato';
+}
+
+.team-sec {
+    display: flex;
+    justify-content: center;
+    margin-top: 100px;
+}
+
+.card {
+    width: 250px;
+    min-height: 300px;
+    margin: 100px 80px;
+    padding: 15px 0;
+    background: #fff;
+    box-shadow: 0px 1px 2px rgba(0, 0, 0, .5);
+}
+
+.card h3 {
+    color: #3daf98;
+    text-align: center;
+    text-transform: uppercase;
+}
+
+.card ul {
+    list-style-type: none;
+    color: #1977cc;
+    padding: 0;
+    text-align: center;
+}
+
+.card ul ul {
+    padding: 0;
+}
+
+.card ul span {
+    color: #fcb034;
+}
+
+.card ul a {
+    color: #00aeef;
+    text-decoration: none;
+}
+
+.card ul a:hover {
+    color: #fcb034;
+    text-decoration: none;
+}
+
+.ring {
+    position: relative;
+    width: 165px;
+    height: 165px;
+    margin: 0 auto;
+    border-radius: 50%;
+    text-align: center;
+}
+
+.ring:after {
+    position: absolute;
+    top: -5px;
+    bottom: -5px;
+    left: -5px;
+    right: -5px;
+    background: linear-gradient(to bottom, #3daf98 0%, #3daf98 50%, #1977cc 50%, #00aeef 100%);
+    border-radius: 50%;
+    content: ' ';
+}
+
+.ring img {
+    position: absolute;
+    top: calc(50% - 80px);
+    left: calc(50% - 80px);
+    width: 150px;
+    height: 150px;
+    border: 5px solid white;
+    border-radius: 50%;
+    box-shadow: 0 0 5px white;
+    z-index: 1;
+}
+
+#datepicker {
+    position: relative;
+    z-index: 1000;
+
+}
+
+#ui-datepicker-div{
+    top: 336px !important;
+}
+
+.index-btn{
+    padding: 8px;
+    background: none;
+    color: blue;
+    font-size: 18px;
+    font-weight: bold;
+    font-family: sans-serif;
 }
