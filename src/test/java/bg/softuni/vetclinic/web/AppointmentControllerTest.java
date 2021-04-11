@@ -74,7 +74,7 @@ public class AppointmentControllerTest {
     void addAppointment() throws Exception {
         mockMvc.perform(MockMvcRequestBuilders.post(APPOINTMENT_CONTROLLER_PREFIX + "/make")
                 .param("additionalInfo", "test story test")
-                .param("appointmentDate", "04/07/2021")
+                .param("appointmentDate", "04/11/2021")
                 .param("petId", String.valueOf(this.testPetId))
                 .param("docId", String.valueOf(this.testDoctorId))
                 .with(csrf())).andExpect(status().is3xxRedirection());

@@ -57,15 +57,15 @@ public class UserServiceImpl implements UserService {
             userRoleRepository.saveAll(List.of(adminRole, doctorRole, userRole));
 
             UserEntity admin = new UserEntity().setFullName("Admin Adminov").setEmail("admin@vet.bg").setPhoneNumber(555231345L).setPassword(passwordEncoder.encode("123456"));
-            UserEntity doctor = new DoctorEntity().setSpecialization("psychologist").setFullName("Dr Dolittle").setEmail("thedoc@vet.bg").setPhoneNumber(33325870L).setPassword(passwordEncoder.encode("123456"));
-            UserEntity user = new UserEntity().setFullName("Dummy User").setEmail("user@dummy.bg").setPhoneNumber(555875492L).setPassword(passwordEncoder.encode("123456"));
+//            UserEntity doctor = new DoctorEntity().setSpecialization("psychologist").setFullName("Dr Dolittle").setEmail("thedoc@vet.bg").setPhoneNumber(33325870L).setPassword(passwordEncoder.encode("123456"));
+//            UserEntity user = new UserEntity().setFullName("Dummy User").setEmail("user@dummy.bg").setPhoneNumber(555875492L).setPassword(passwordEncoder.encode("123456"));
 
 
             admin.setRoles(List.of(adminRole, doctorRole, userRole));
-            doctor.setRoles(List.of(doctorRole, userRole));
-            user.setRoles(List.of(userRole));
+//            doctor.setRoles(List.of(doctorRole, userRole));
+//            user.setRoles(List.of(userRole));
 
-            userRepository.saveAll(List.of(admin, doctor, user));
+            userRepository.saveAll(List.of(admin));
         }
     }
 

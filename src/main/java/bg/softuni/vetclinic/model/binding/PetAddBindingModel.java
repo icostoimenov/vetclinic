@@ -26,6 +26,7 @@ public class PetAddBindingModel {
     }
 
     @Min(0)
+    @NotNull
     public Integer getAge() {
         return age;
     }
